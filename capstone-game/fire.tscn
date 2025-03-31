@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://batnbwq0ipiae"]
+
+[ext_resource type="Texture2D" uid="uid://2slceeid8arx" path="res://rising-up-thick-black-smoke-from-a-fire-effect-isolated-on-transparent-background-free-png.png" id="1_2pqqt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_2pqqt")
+emission_enabled = true
+emission = Color(0.836264, 0.339652, 0.142541, 1)
+emission_energy_multiplier = 4.0
+billboard_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_5ltu8"]
+offsets = PackedFloat32Array(0, 0.527273, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x6ecg"]
+gradient = SubResource("Gradient_5ltu8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bvp3"]
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 1, 0)
+color_ramp = SubResource("GradientTexture1D_x6ecg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icfi2"]
+render_priority = -1
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.235804, 0.11534, 0.0373187, 1)
+albedo_texture = ExtResource("1_2pqqt")
+emission = Color(0.836264, 0.339652, 0.142541, 1)
+emission_energy_multiplier = 4.0
+billboard_mode = 1
+
+[node name="Fire" type="Node3D"]
+transform = Transform3D(0.10878, 0, 0.994066, 0, 1, 0, -0.994066, 0, 0.10878, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 2.23517e-08, 0, 1, 0, -2.23517e-08, 0, 1, 0.00389703, 0.0239373, -0.442054)
+material_override = SubResource("StandardMaterial3D_h2yge")
+lifetime = 1.7
+process_material = SubResource("ParticleProcessMaterial_1bvp3")
+draw_pass_1 = SubResource("QuadMesh_lquwl")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.72529e-09, 1.0626, -0.441628)
+material_override = SubResource("StandardMaterial3D_icfi2")
+lifetime = 1.7
+process_material = SubResource("ParticleProcessMaterial_1bvp3")
+draw_pass_1 = SubResource("QuadMesh_lquwl")
