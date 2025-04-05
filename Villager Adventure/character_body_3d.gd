@@ -22,8 +22,8 @@ func _physics_process(delta):
 		
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and can_input == true:
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor() and can_input == true:
+	#	velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -39,6 +39,12 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
+	if Input.is_action_just_pressed("test"):
+		$neck/Camera3D.current = true
+		#$"../IntroCamera/Timer".stop()
+		$neck/Camera3D/Blurr_intro.play("unblurr")
+		$"../QUESTS/CheckBox3".button_pressed = true
+		$"../QUESTS/Node2D/SparklerQuest".play("Sparkle")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -56,6 +62,8 @@ func _input(event):
 func _on_timer_timeout() -> void:
 	$neck/Camera3D.current = true
 	$neck/Camera3D/Blurr_intro.play("unblurr")
+	$"../QUESTS/CheckBox3".button_pressed = true
+	$"../QUESTS/Node2D/SparklerQuest".play("Sparkle")
 
 
 func _on_limp_timeout() -> void:
