@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://bkor8hjfohqcm"]
+[gd_scene load_steps=108 format=4 uid="uid://bkor8hjfohqcm"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://dm078qdi2rgu4" path="res://character_body_3d.gd" id="1_ig7tw"]
@@ -18047,6 +18047,96 @@ _data = {
 &"Walk_Formal": SubResource("Animation_myivo")
 }
 
+[sub_resource type="Animation" id="Animation_82xsv"]
+resource_name = "rotate_first"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.42531, 0), Vector3(0, 4.55531, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(4.511, 0, -3.381), Vector3(4.511, 0, -4.7)]
+}
+
+[sub_resource type="Animation" id="Animation_getpj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.42531, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.5477, -9.68575e-08, -3.38102)]
+}
+
+[sub_resource type="Animation" id="Animation_ryguw"]
+resource_name = "rotate_back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.52926, 0), Vector3(0, 1.42531, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.548, 0, -4.7), Vector3(-2.5477, -9.68575e-08, -3.38102)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ryguw"]
+_data = {
+&"RESET": SubResource("Animation_getpj"),
+&"rotate_back": SubResource("Animation_ryguw"),
+&"rotate_first": SubResource("Animation_82xsv")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_getpj"]
 size = Vector3(0.403332, 1.00342, 10.6757)
 
@@ -18063,12 +18153,13 @@ shadow_enabled = true
 environment = SubResource("Environment_0xm2m")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.915747, -0.1, 5.85131)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.915747, -0.1, 4.13121)
 material_override = SubResource("StandardMaterial3D_1bvp3")
 use_collision = true
-size = Vector3(29.3799, 0.2, 21.7026)
+size = Vector3(29.3799, 0.2, 25.1428)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 script = ExtResource("1_ig7tw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -18432,7 +18523,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33618, 0.920036, 0.309192)
 shape = SubResource("BoxShape3D_074og")
 
 [node name="TreeBG2" type="Node3D" parent="ALL Tree_bg"]
-transform = Transform3D(0.0111699, 0, 0.999938, 0, 1, 0, -0.999938, 0, 0.0111699, 1.15222, -0.163532, 1.03467)
+transform = Transform3D(0.0111699, 0, 0.999938, 0, 1, 0, -0.999938, 0, 0.0111699, 0.984095, -0.163532, 0.979971)
 
 [node name="CommonTree_2" parent="ALL Tree_bg/TreeBG2" instance=ExtResource("16_yaehf")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -3.73085, 0.242772, 4.09645)
@@ -18629,7 +18720,7 @@ transform = Transform3D(0.999997, 0, 3.44589e-08, 0, 1, 0, -3.44589e-08, 0, 0.99
 shape = SubResource("BoxShape3D_cegan")
 
 [node name="TreeBG3" type="Node3D" parent="ALL Tree_bg"]
-transform = Transform3D(-0.0661868, 0, -0.997807, 0, 1, 0, 0.997807, 0, -0.0661868, 0.397314, -0.163532, 1.03467)
+transform = Transform3D(-0.0661868, 0, -0.997807, 0, 1, 0, 0.997807, 0, -0.0661868, 0.397314, -0.163532, 0.387511)
 
 [node name="CommonTree_2" parent="ALL Tree_bg/TreeBG3" instance=ExtResource("16_yaehf")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -3.73085, 0.242772, 4.09645)
@@ -18871,7 +18962,7 @@ libraries = {
 }
 
 [node name="HERO" type="Node3D" parent="."]
-transform = Transform3D(0.115982, 0, 0.791548, 0, 0.8, 0, -0.791548, 0, 0.115982, -2.5477, -9.68575e-08, -3.85155)
+transform = Transform3D(0.115982, 0, 0.791548, 0, 0.8, 0, -0.791548, 0, 0.115982, -2.5477, -9.68575e-08, -3.38102)
 script = ExtResource("18_074og")
 
 [node name="Rig" type="Node3D" parent="HERO"]
@@ -19274,8 +19365,13 @@ one_shot = true
 wait_time = 0.35
 one_shot = true
 
+[node name="turn_around" type="AnimationPlayer" parent="HERO"]
+libraries = {
+&"": SubResource("AnimationLibrary_ryguw")
+}
+
 [node name="Trigger_start" type="Area3D" parent="."]
-transform = Transform3D(0.115982, 0, 0.791548, 0, 0.8, 0, -0.791548, 0, 0.115982, -2.5477, 0.541041, -2.84159)
+transform = Transform3D(0.115982, 0, 0.791548, 0, 0.8, 0, -0.791548, 0, 0.115982, -2.5477, 0.541041, -3.52997)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger_start"]
 transform = Transform3D(0.990222, 0, 0.139502, 0, 1, 0, -0.139502, 0, 0.990222, -0.444393, -0.00170904, 4.7837)
