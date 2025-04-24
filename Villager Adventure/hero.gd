@@ -6,6 +6,8 @@ var slide = false
 var keep_jumping = true
 var jump_count = 0
 var can_rotate = true
+var look_at_player = false
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,7 +40,10 @@ func _process(delta: float) -> void:
 		if jump_count == 4 and can_rotate == true:
 			$turn_around.play("rotate_first")
 			can_rotate = false
-		
+
+	if look_at_player == true:
+		look_at(Vector3($"../CharacterBody3D".position.x,$"../CharacterBody3D".position.y,$"../CharacterBody3D".position.z), Vector3(0,1,0), true)
+
 
 
 func _on_timer_timeout() -> void:
@@ -80,3 +85,4 @@ func _on_restart_jump_timeout() -> void:
 func _on_trigger_start_body_entered(body: Node3D) -> void:
 	$ANIMATIONS.play("Idle_Talking")
 	keep_jumping = false
+	look_at_player = true
