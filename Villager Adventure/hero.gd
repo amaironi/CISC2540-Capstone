@@ -7,6 +7,7 @@ var keep_jumping = true
 var jump_count = 0
 var can_rotate = true
 var look_at_player = false
+var move_to_player = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,7 +37,30 @@ func _process(delta: float) -> void:
 
 			
 	if look_at_player == true:
-		look_at(Vector3($"../CharacterBody3D".position.x,$"../CharacterBody3D".position.y+1,$"../CharacterBody3D".position.z), Vector3(0,1,0), true)
+		var player_pos = $"../CharacterBody3D".position
+		player_pos.y = position.y  #same height
+		look_at(player_pos, Vector3(0, 1, 0), true)
+		move_to_player = true
+		
+		var camera = $"../CharacterBody3D/neck/Camera3D"
+		var target_pos = position
+		target_pos.y += 0.6 
+		camera.look_at(target_pos, Vector3(0, 1, 0))
+	
+	if move_to_player == true:
+		var to_player = $"../CharacterBody3D".position - position
+		to_player.y = 0
+		var distance = to_player.length()
+
+		
+		if distance > 1.4:
+			var direction = to_player.normalized()
+			position += direction * 1.6 * delta
+		else:
+			move_to_player = false
+			$AnimationPlayer.stop()
+			$AnimationPlayer.play("Idle")  # Play Idle animation when close enough
+		
 
 
 
@@ -60,36 +84,28 @@ func _on_jump_again_timeout() -> void:
 	landing = false
 	$AnimationPlayer/JumpExpire.start()
 
-#elif jumping == false and landing == true and keep_jumping == true:
-			#position.x += 0.7*delta
-		#if slide == true and keep_jumping == true:
-			#position.x += 0.8*delta
-	#
-	#if jump_count >= 4:
-		#if jumping == true and keep_jumping == true:
-			#position.x -= 1.4*delta
-		#elif jumping == false and landing == true and keep_jumping == true:
-			#position.x -= 1*delta
-		#if slide == true and keep_jumping == true:
-			#position.x -= 0.8*delta
-		
-
 
 func _on_trigger_start_body_entered(body: Node3D) -> void:
-		$AnimationPlayer.stop()
-		$AnimationPlayer.play("Idle")
-		jumping = false
-		keep_jumping = false
-		look_at_player = true
-		$AnimationPlayer/JumpExpire.stop()
-		$AnimationPlayer/JumpAgain.stop()
 		var only_once = true
 		if only_once == true:
-			$"../Trigger_start/IntroDia/Fade".play("Fadein")
-			$"../Trigger_start/IntroDia".visible = true
+			$AnimationPlayer.stop()
+			$AnimationPlayer.play("Running")
+			jumping = false
+			keep_jumping = false
+			look_at_player = true
+			$AnimationPlayer/JumpExpire.stop()
+			$AnimationPlayer/JumpAgain.stop()
+			$"../Trigger_start/Dialogue1/Fade".play("Fadein")
+			$"../Trigger_start/Dialogue1".visible = true
 			only_once = false
-		$"../CharacterBody3D".can_input = false
-		$"../Trigger_start/Input_timer".start()
+			$"../CharacterBody3D".can_input = false
+			$"../CharacterBody3D".velocity.x = 0
+			$"../CharacterBody3D".velocity.z = 0
+			$"../Trigger_start/Dialogue1/Input_timer".start()
+			$"../FindableSword/SpotLight3D".visible = true
+			
+			
 
 func _on_input_timer_timeout() -> void:
-	$"../CharacterBody3D".can_input = false
+	$"../CharacterBody3D".can_input = true
+	
