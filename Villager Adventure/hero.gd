@@ -13,6 +13,7 @@ var just_once_2 = true
 var to_pos = false
 var play_sigh = false
 var pickable_sword = false
+var in_dialogue = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,8 +46,8 @@ func _process(delta: float) -> void:
 		var player_pos = $"../CharacterBody3D".position
 		player_pos.y = position.y  #same height
 		look_at(player_pos, Vector3(0, 1, 0), true)
-		move_to_player = true
 		
+	if look_at_player == true and just_once_2 == true:
 		var camera = $"../CharacterBody3D/neck/Camera3D"
 		var target_pos = position
 		target_pos.y += 0.6 
@@ -65,21 +66,26 @@ func _process(delta: float) -> void:
 			move_to_player = false
 			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Idle")  # Play Idle animation when close enough
-		
+	
 	if Input.is_action_just_pressed("AdvanceDialogue"):
 		if just_once_2 == true:
 			$"../Trigger_start/Dialogue1/Fade".play("Fadeout")
 			just_once_2 = false
 			$skip.play()
 			$whathappened/lookaround.start()
+			move_to_player = false
 			
+	if just_once_2 == true and in_dialogue == true:
+		$"../CharacterBody3D".velocity.x = 0
+		$"../CharacterBody3D".velocity.z = 0
+		
 	if to_pos == true:
 		$AnimationPlayer.play("Running")
 		var go_to_pos = $AnimationPlayer2/wasdpos.position - position
 		go_to_pos.y = 0
-		var distance = go_to_pos.length()
+		var distance_to_pos = go_to_pos.length()
 			
-		if distance > 0.1:
+		if distance_to_pos > 0.3:
 			var direction = go_to_pos.normalized()
 			position += direction * 1.6 * delta
 		else:
@@ -87,15 +93,17 @@ func _process(delta: float) -> void:
 			$AnimationPlayer2.play("wasding")
 			$AnimationPlayer2/sigh.play()
 			play_sigh = true
+			$"../chocolate/AnimationPlayer".play("fade")
 			
 		
-		if play_sigh == true and $AnimationPlayer2/sigh.playing == false:
-			$AnimationPlayer2/sigh.play()
-			$"../chocolate/AnimationPlayer".play("fade")
+	if play_sigh == true and $AnimationPlayer2/sigh.playing == false:
+		$AnimationPlayer2/sigh.play()
+		
 	
-		if pickable_sword == true and Input.is_action_just_pressed("Pickup"):
-			$"../FindableSword".queue_free()
-			#GIVE SWORD TO PLAYER
+	if pickable_sword == true and Input.is_action_just_pressed("Pickup"):
+		$"../FindableSword".visible = false
+		$"../FindableSword/Area3D/Label".visible = false
+		$"../CharacterBody3D/neck/Camera3D/sword_1handed2".visible = true
 
 func _on_timer_timeout() -> void:
 	$AnimationPlayer.play("Jumping")
@@ -120,6 +128,7 @@ func _on_jump_again_timeout() -> void:
 
 func _on_trigger_start_body_entered(body: Node3D) -> void:
 		if only_once == true:
+			move_to_player = true
 			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Running")
 			jumping = false
@@ -141,6 +150,7 @@ func _on_trigger_start_body_entered(body: Node3D) -> void:
 
 func _on_input_timer_timeout() -> void:
 	$"../CharacterBody3D".can_input = true
+	in_dialogue = true
 	
 
 
@@ -150,9 +160,9 @@ func _on_lookaround_timeout() -> void:
 
 
 func _on_gain_control_timeout() -> void:
-	look_at_player = false
 	move_to_player = false
 	to_pos = true
+	$"../FindableSword/Area3D".monitoring = true
 	
 		
 
