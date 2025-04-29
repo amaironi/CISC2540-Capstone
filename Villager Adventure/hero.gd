@@ -10,18 +10,28 @@ var look_at_player = false
 var move_to_player = false
 var only_once = true
 var just_once_2 = true
+var just_once_4 = true
 var to_pos = false
 var play_sigh = false
 var pickable_sword = false
 var in_dialogue = false
+var has_sword = false
+var at_dialogue_one = true
+var at_dialogue_two = false
+var look_at_hero_dia2 = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = true # Replace with function body.
+	rotation.y = 171
+	rotation.x = 0
+	rotation.z = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	if jump_count <= 2:
 		if jumping == true and keep_jumping == true:
 			position.x += 1.2*delta
@@ -67,13 +77,14 @@ func _process(delta: float) -> void:
 			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Idle")  # Play Idle animation when close enough
 	
-	if Input.is_action_just_pressed("AdvanceDialogue"):
+	if Input.is_action_just_pressed("AdvanceDialogue") and at_dialogue_one == true:
 		if just_once_2 == true:
 			$"../Trigger_start/Dialogue1/Fade".play("Fadeout")
 			just_once_2 = false
 			$skip.play()
 			$whathappened/lookaround.start()
 			move_to_player = false
+			at_dialogue_one = false
 			
 	if just_once_2 == true and in_dialogue == true:
 		$"../CharacterBody3D".velocity.x = 0
@@ -104,6 +115,37 @@ func _process(delta: float) -> void:
 		$"../FindableSword".visible = false
 		$"../FindableSword/Area3D/Label".visible = false
 		$"../CharacterBody3D/neck/Camera3D/sword_1handed2".visible = true
+		has_sword = true
+		pickable_sword = false
+	
+	
+	if has_sword == true:
+		if $"../CharacterBody3D".position.z <= -6:
+			$AnimationPlayer2.stop()
+			has_sword = false
+			$AnimationPlayer.stop()
+			$AnimationPlayer.play("Idle")
+			look_at_player = true
+			$"../Dialogue2/diafade".play("fadein")
+			$"../Dialogue2".visible = true
+			look_at_hero_dia2 = true
+			play_sigh = false
+	
+	
+	if look_at_player == true and look_at_hero_dia2 == true :
+		var camera = $"../CharacterBody3D/neck/Camera3D"
+		var target_pos = position
+		target_pos.y += 0.6 
+		camera.look_at(target_pos, Vector3(0, 1, 0))
+	
+	if Input.is_action_just_pressed("AdvanceDialogue") and at_dialogue_two == true:
+		at_dialogue_two = false
+		if just_once_4 == true:
+			$"../Dialogue2/diafade".play("fadeout")
+			just_once_4 = false
+			$rewardyou.play()
+			$accept.start()
+	
 
 func _on_timer_timeout() -> void:
 	$AnimationPlayer.play("Jumping")
@@ -172,3 +214,16 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		just_once_3 = false
 		$"../FindableSword/Area3D/Label".visible = true
 		pickable_sword = true
+		at_dialogue_two = true
+
+
+func _on_accept_timeout() -> void:
+	look_at_player = false
+	$accept/accept.play()
+	$Leave.play("leave")
+	$AnimationPlayer.play("Running")
+	
+
+
+func _on_exit_area_shape_body_entered(body: Node3D) -> void:
+	print("FINISH")
