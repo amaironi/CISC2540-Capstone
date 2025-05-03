@@ -2860,11 +2860,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.72046)
 shape = SubResource("BoxShape3D_82xsv")
 
 [node name="QUESTS" type="ColorRect" parent="."]
-offset_left = 2249.0
-offset_top = 247.0
-offset_right = 2506.0
-offset_bottom = 458.0
+anchors_preset = -1
+anchor_left = 0.881961
+anchor_top = 0.173944
+anchor_right = 0.982745
+anchor_bottom = 0.322535
+offset_top = -1.52588e-05
 color = Color(0.498514, 0.997663, 0.637734, 0.121569)
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="QUESTS"]
 layout_mode = 0
