@@ -80,7 +80,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("AdvanceDialogue") and at_dialogue_one == true:
 		if just_once_2 == true:
-			$"../Trigger_start/Dialogue1/Fade".play("Fadeout")
+			$"../Dialogue1/Dia1fade".play("Fadeout")
 			just_once_2 = false
 			$skip.play()
 			$whathappened/lookaround.start()
@@ -127,7 +127,7 @@ func _process(delta: float) -> void:
 			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Idle")
 			look_at_player = true
-			$"../Dialogue2/diafade".play("fadein")
+			$"../Dialogue2/Diafade2".play("fadein")
 			$"../Dialogue2".visible = true
 			look_at_hero_dia2 = true
 			play_sigh = false
@@ -142,7 +142,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("AdvanceDialogue") and at_dialogue_two == true:
 		at_dialogue_two = false
 		if just_once_4 == true:
-			$"../Dialogue2/diafade".play("fadeout")
+			$"../Dialogue2/Diafade2".play("fadeout")
 			just_once_4 = false
 			$rewardyou.play()
 			$accept.start()
@@ -179,13 +179,12 @@ func _on_trigger_start_body_entered(body: Node3D) -> void:
 			look_at_player = true
 			$AnimationPlayer/JumpExpire.stop()
 			$AnimationPlayer/JumpAgain.stop()
-			$"../Trigger_start/Dialogue1/Fade".play("Fadein")
-			$"../Trigger_start/Dialogue1".visible = true
+			$"../Dialogue1/Dia1fade".play("Fadein")
 			only_once = false
 			$"../CharacterBody3D".can_input = false
 			$"../CharacterBody3D".velocity.x = 0
 			$"../CharacterBody3D".velocity.z = 0
-			$"../Trigger_start/Dialogue1/Input_timer".start()
+			$"../Dialogue1/input_timer".start()
 			$"../FindableSword/SpotLight3D".visible = true
 			$whathappened.play()
 			
@@ -227,4 +226,8 @@ func _on_accept_timeout() -> void:
 
 
 func _on_exit_area_shape_body_entered(body: Node3D) -> void:
-	print("FINISH")
+	$"../fadeout/changescenefade".play("fade")
+	$"../fadeout/changescene".start()
+
+func _on_changescene_timeout() -> void:
+	get_tree().change_scene_to_file("res://escort_level.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://bkor8hjfohqcm"]
+[gd_scene load_steps=97 format=4 uid="uid://bkor8hjfohqcm"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://dm078qdi2rgu4" path="res://character_body_3d.gd" id="1_ig7tw"]
@@ -486,172 +486,6 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_getpj"]
 size = Vector3(0.280768, 1.00342, 10.6757)
 
-[sub_resource type="LabelSettings" id="LabelSettings_cegan"]
-font_size = 25
-font_color = Color(0.0862745, 0, 0.678431, 1)
-
-[sub_resource type="Animation" id="Animation_d13ii"]
-resource_name = "Fadein"
-length = 3.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../IntroDia2:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.166667, 3.16667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0), Color(0.662745, 1, 1, 0.67451)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.166667, 3.16667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0), Color(0.662745, 1, 1, 0.67451)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Label2:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.166667, 3.16667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 0), Color(0.0862745, 0, 0.678431, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Label:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.166667, 3.16667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 0), Color(0.0862745, 0, 0.678431, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_a6jrf"]
-resource_name = "Fadeout"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../IntroDia2:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0.67451), Color(0.662745, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0.67451), Color(0.662745, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Label2:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1), Color(0.0862745, 0, 0.678431, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Label:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.133333, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1), Color(0.0862745, 0, 0.678431, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1u8w0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../IntroDia2:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0.67451)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0.67451)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Label2:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Label:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0odxb"]
-_data = {
-&"Fadein": SubResource("Animation_d13ii"),
-&"Fadeout": SubResource("Animation_a6jrf"),
-&"RESET": SubResource("Animation_1u8w0")
-}
-
 [sub_resource type="Animation" id="Animation_getpj"]
 length = 0.001
 tracks/0/type = "value"
@@ -929,59 +763,72 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_xuqvo"]
 size = Vector3(3.22391, 1, 0.133789)
 
-[sub_resource type="LabelSettings" id="LabelSettings_xuqvo"]
-font_size = 25
-font_color = Color(0.0862745, 0, 0.678431, 1)
+[sub_resource type="Animation" id="Animation_facbu"]
+resource_name = "fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
 
-[sub_resource type="Animation" id="Animation_jq2sk"]
+[sub_resource type="Animation" id="Animation_b1qrp"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dia1:color")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.545098, 0.772549, 0.772549, 1)]
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_come4"]
+_data = {
+&"RESET": SubResource("Animation_b1qrp"),
+&"fade": SubResource("Animation_facbu")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_xuqvo"]
+font_size = 25
+font_color = Color(0.0862745, 0, 0.678431, 0)
+
+[sub_resource type="Animation" id="Animation_jq2sk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.545098, 0.772549, 0.772549, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Dia2:color")
+tracks/1/path = NodePath("Label:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.545098, 0.772549, 0.772549, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Dia1/Label:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Dia2/Label:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1)]
+"values": [Color(0.0862745, 0, 0.678431, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_htxhm"]
@@ -990,46 +837,22 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dia1:color")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.545098, 0.772549, 0.772549, 0), Color(0.545098, 0.772549, 0.772549, 1)]
+"values": [Color(0.545098, 0.772549, 0.772549, 0), Color(0.662745, 1, 1, 0.67451)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Dia2:color")
+tracks/1/path = NodePath("Label:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.545098, 0.772549, 0.772549, 0), Color(0.545098, 0.772549, 0.772549, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Dia1/Label:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 0), Color(0.0862745, 0, 0.678431, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Dia2/Label:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -1038,51 +861,27 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_4k2k6"]
 resource_name = "fadeout"
-length = 3.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dia1:color")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 2.96667),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.545098, 0.772549, 0.772549, 1), Color(0.545098, 0.772549, 0.772549, 0)]
+"values": [Color(0.662745, 1, 1, 0.67451), Color(0.545098, 0.772549, 0.772549, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Dia2:color")
+tracks/1/path = NodePath("Label:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 2.96667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.545098, 0.772549, 0.772549, 1), Color(0.545098, 0.772549, 0.772549, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Dia1/Label:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.96667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 1), Color(0.0862745, 0, 0.678431, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Dia2/Label:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 2.96667),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0862745, 0, 0.678431, 1), Color(0.0862745, 0, 0.678431, 0)]
@@ -1093,6 +892,100 @@ _data = {
 &"RESET": SubResource("Animation_jq2sk"),
 &"fadein": SubResource("Animation_htxhm"),
 &"fadeout": SubResource("Animation_4k2k6")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_cegan"]
+font_size = 25
+font_color = Color(0.0862745, 0, 0.678431, 0)
+
+[sub_resource type="Animation" id="Animation_come4"]
+resource_name = "Fadein"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.662745, 1, 1, 0), Color(0.662745, 1, 1, 0.67451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0862745, 0, 0.678431, 0), Color(0.0862745, 0, 0.678431, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h8e4i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.662745, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0862745, 0, 0.678431, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4lmeg"]
+resource_name = "Fadeout"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.662745, 1, 1, 0.67451), Color(0.662745, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0862745, 0, 0.678431, 1), Color(0.0862745, 0, 0.678431, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lmeg"]
+_data = {
+&"Fadein": SubResource("Animation_come4"),
+&"Fadeout": SubResource("Animation_4lmeg"),
+&"RESET": SubResource("Animation_h8e4i")
 }
 
 [node name="Node3D" type="Node3D"]
@@ -2860,25 +2753,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.72046)
 shape = SubResource("BoxShape3D_82xsv")
 
 [node name="QUESTS" type="ColorRect" parent="."]
-anchors_preset = -1
-anchor_left = 0.881961
-anchor_top = 0.173944
-anchor_right = 0.982745
-anchor_bottom = 0.322535
-offset_top = -1.52588e-05
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -164.0
+offset_right = -36.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
 color = Color(0.498514, 0.997663, 0.637734, 0.121569)
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="QUESTS"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.118503
+anchor_right = -0.118503
 offset_left = 83.0
 offset_top = 10.0
 offset_right = 172.0
 offset_bottom = 33.0
 text = "QUEST LOG"
+metadata/_edit_use_anchors_ = true
 
 [node name="CheckBox" type="CheckBox" parent="QUESTS"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0597716
+anchor_right = -0.0597716
 offset_left = 19.0
 offset_top = 51.0
 offset_right = 234.0
@@ -2888,9 +2792,13 @@ text = "CHECK OUT THE
 BURNING SHACK"
 alignment = 1
 vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="CheckBox3" type="CheckBox" parent="QUESTS"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0597716
+anchor_right = -0.0597716
 offset_left = 19.0
 offset_top = 121.0
 offset_right = 234.0
@@ -2898,6 +2806,7 @@ offset_bottom = 198.0
 text = "TALK TO THE VILLAGER"
 alignment = 1
 vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Node2D" type="Node2D" parent="QUESTS"]
 position = Vector2(-2249, -247)
@@ -2926,67 +2835,6 @@ transform = Transform3D(0.115982, 0, 0.791548, 0, 0.8, 0, -0.791548, 0, 0.115982
 transform = Transform3D(0.990222, 0, 0.139502, 0, 0.999999, 0, -0.139502, 0, 0.990222, -0.38371, -0.00170898, 4.77515)
 shape = SubResource("BoxShape3D_getpj")
 debug_color = Color(0.973469, 0, 0.433762, 0.42)
-
-[node name="Dialogue1" type="Control" parent="Trigger_start"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="IntroDia" type="ColorRect" parent="Trigger_start/Dialogue1"]
-layout_mode = 0
-offset_left = 1521.0
-offset_top = 1004.0
-offset_right = 2378.0
-offset_bottom = 1230.0
-color = Color(0.662745, 1, 1, 0.67451)
-
-[node name="Label" type="Label" parent="Trigger_start/Dialogue1"]
-layout_mode = 0
-offset_left = 1539.0
-offset_top = 1004.0
-offset_right = 2369.0
-offset_bottom = 1229.0
-text = "I- I'm not sure sire... It all happened so fast! I know I'm hurt though,
-I'm limping badly. Someone attacked me while I was on and about 
-my business. It looks like my hut looks like it is in complete ruin...
-But allow me to introduce myself, I am from around this little region
-I'm sure you are familiar with. Oh, excuse  my manners, my name's...
-                            (PRESS C TO SAY THIS TO THE HERO)"
-label_settings = SubResource("LabelSettings_cegan")
-
-[node name="IntroDia2" type="ColorRect" parent="Trigger_start/Dialogue1"]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 1004.0
-offset_right = 1097.0
-offset_bottom = 1226.0
-color = Color(0.662745, 1, 1, 0.67451)
-
-[node name="Label2" type="Label" parent="Trigger_start/Dialogue1"]
-layout_mode = 0
-offset_left = 258.0
-offset_top = 1004.0
-offset_right = 1095.0
-offset_bottom = 1229.0
-text = "I- I'm not sure sire... It all happened so fast! I know I'm hurt though,
-I'm limping badly. Someone attacked me while I was on and about 
-my business. It looks like my hut looks like it is in complete ruin...
-But allow me to introduce myself, I am from around this little region
-I'm sure you are familiar with. Oh, excuse  my manners, my name's...
-                            (PRESS X TO SAY THIS TO THE HERO)"
-label_settings = SubResource("LabelSettings_cegan")
-
-[node name="Fade" type="AnimationPlayer" parent="Trigger_start/Dialogue1"]
-root_node = NodePath("../IntroDia")
-libraries = {
-&"": SubResource("AnimationLibrary_0odxb")
-}
-
-[node name="Input_timer" type="Timer" parent="Trigger_start/Dialogue1"]
-wait_time = 8.0
-one_shot = true
 
 [node name="Hero" parent="." instance=ExtResource("18_cegan")]
 transform = Transform3D(-0.0069999, 0, -3.7188e-05, 0, 0.007, 0, 3.7188e-05, 0, -0.0069999, -2.548, 0.7, -3.381)
@@ -3093,7 +2941,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355261, 0, -7.66329)
 
 [node name="sigh" type="AudioStreamPlayer3D" parent="Hero/AnimationPlayer2"]
 stream = ExtResource("23_lswn8")
-volume_db = 4.0
+volume_db = 7.0
 pitch_scale = 0.9
 
 [node name="rewardyou" type="AudioStreamPlayer" parent="Hero"]
@@ -3176,20 +3024,28 @@ transform = Transform3D(0.379931, 0.176792, 0.907962, -0.690801, 0.707014, 0.151
 shape = SubResource("BoxShape3D_a6jrf")
 
 [node name="Label" type="Label" parent="FindableSword/Area3D"]
-visible = false
-offset_left = 1005.0
-offset_top = 1126.0
-offset_right = 1611.0
-offset_bottom = 1219.0
+anchors_preset = -1
+anchor_left = 0.368056
+anchor_top = 0.825617
+anchor_right = 0.946181
+anchor_bottom = 1.01543
 text = "        Press E to pick up the sword
 The chocolate is nowhere to be found..."
 label_settings = SubResource("LabelSettings_a6jrf")
+metadata/_edit_use_anchors_ = true
 
 [node name="chocolate" type="Label" parent="."]
-offset_left = 887.0
-offset_top = 612.0
-offset_right = 1780.0
-offset_bottom = 695.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -41.5
+offset_right = 425.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "LOOK FOR YOUR CHOCOLATE"
 label_settings = SubResource("LabelSettings_lswn8")
 
@@ -3205,64 +3061,101 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.303357, -11.9511)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121597, 0.408487, -0.433105)
 shape = SubResource("BoxShape3D_xuqvo")
 
-[node name="Dialogue2" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="fadeout" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_right = 1.24913
+anchor_bottom = 1.18056
+offset_left = -292.0
+offset_top = -86.0
+offset_right = -292.0
+offset_bottom = -86.0
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
 
-[node name="Dia1" type="ColorRect" parent="Dialogue2"]
-layout_mode = 0
-offset_left = 295.0
-offset_top = 1003.0
-offset_right = 1000.0
-offset_bottom = 1173.0
-color = Color(0.545098, 0.772549, 0.772549, 1)
+[node name="changescenefade" type="AnimationPlayer" parent="fadeout"]
+libraries = {
+&"": SubResource("AnimationLibrary_come4")
+}
 
-[node name="Label" type="Label" parent="Dialogue2/Dia1"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 15.0
-offset_right = 678.0
-offset_bottom = 164.0
+[node name="changescene" type="Timer" parent="fadeout"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Dialogue2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.5
+offset_top = -236.0
+offset_right = 344.5
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.545098, 0.772549, 0.772549, 0)
+
+[node name="Label" type="Label" parent="Dialogue2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017192
+anchor_top = 0.0934664
+anchor_right = 0.980907
+anchor_bottom = 0.964811
 text = "Yes hero. The miscreant stole something valuable from
  me. Please help me recover it. I will assist you and 
 will reward you greatly for such a noble deed!
                    (PRESS X TO SAY THIS TO THE HERO)"
 label_settings = SubResource("LabelSettings_xuqvo")
+metadata/_edit_use_anchors_ = true
 
-[node name="Dia2" type="ColorRect" parent="Dialogue2"]
-layout_mode = 0
-offset_left = 1346.0
-offset_top = 1003.0
-offset_right = 2051.0
-offset_bottom = 1173.0
-color = Color(0.545098, 0.772549, 0.772549, 1)
-
-[node name="Label" type="Label" parent="Dialogue2/Dia2"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 15.0
-offset_right = 678.0
-offset_bottom = 164.0
-text = "Yes hero. The miscreant stole something valuable from
- me. Please help me recover it. I will assist you and 
-will reward you greatly for such a noble deed!
-                   (PRESS C TO SAY THIS TO THE HERO)"
-label_settings = SubResource("LabelSettings_xuqvo")
-
-[node name="diafade" type="AnimationPlayer" parent="Dialogue2"]
+[node name="Diafade2" type="AnimationPlayer" parent="Dialogue2"]
 libraries = {
 &"": SubResource("AnimationLibrary_0rl1p")
 }
+
+[node name="Dialogue1" type="ColorRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -407.0
+offset_top = -260.0
+offset_right = 450.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.662745, 1, 1, 0)
+
+[node name="Label2" type="Label" parent="Dialogue1"]
+layout_mode = 0
+offset_left = 18.0
+offset_right = 855.0
+offset_bottom = 225.0
+text = "I- I'm not sure sire... It all happened so fast! I know I'm hurt though,
+I'm limping badly. Someone attacked me while I was on and about 
+my business. It looks like my hut looks like it is in complete ruin...
+But allow me to introduce myself, I am from around this little region
+I'm sure you are familiar with. Oh, excuse  my manners, my name's...
+                            (PRESS X TO SAY THIS TO THE HERO)"
+label_settings = SubResource("LabelSettings_cegan")
+
+[node name="Dia1fade" type="AnimationPlayer" parent="Dialogue1"]
+libraries = {
+&"": SubResource("AnimationLibrary_4lmeg")
+}
+
+[node name="input_timer" type="Timer" parent="Dialogue1"]
+wait_time = 1.5
+one_shot = true
 
 [connection signal="timeout" from="CharacterBody3D/Limp" to="CharacterBody3D" method="_on_limp_timeout"]
 [connection signal="timeout" from="CharacterBody3D/Limp/Limp/speed_reset" to="CharacterBody3D" method="_on_speed_reset_timeout"]
 [connection signal="timeout" from="IntroCamera/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
 [connection signal="timeout" from="IntroCamera/Timer" to="Hero" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Trigger_start" to="Hero" method="_on_trigger_start_body_entered"]
-[connection signal="timeout" from="Trigger_start/Dialogue1/Input_timer" to="Hero" method="_on_input_timer_timeout"]
 [connection signal="timeout" from="Hero/AnimationPlayer/JumpExpire" to="Hero" method="_on_jump_expire_timeout"]
 [connection signal="timeout" from="Hero/AnimationPlayer/JumpAgain" to="Hero" method="_on_jump_again_timeout"]
 [connection signal="timeout" from="Hero/whathappened/lookaround" to="Hero" method="_on_lookaround_timeout"]
@@ -3270,5 +3163,7 @@ libraries = {
 [connection signal="timeout" from="Hero/accept" to="Hero" method="_on_accept_timeout"]
 [connection signal="body_entered" from="FindableSword/Area3D" to="Hero" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="ExitAreaShape" to="Hero" method="_on_exit_area_shape_body_entered"]
+[connection signal="timeout" from="fadeout/changescene" to="Hero" method="_on_changescene_timeout"]
+[connection signal="timeout" from="Dialogue1/input_timer" to="Hero" method="_on_input_timer_timeout"]
 
 [editable path="Hero"]
