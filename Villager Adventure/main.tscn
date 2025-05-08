@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://bkor8hjfohqcm"]
+[gd_scene load_steps=98 format=4 uid="uid://bkor8hjfohqcm"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://dm078qdi2rgu4" path="res://character_body_3d.gd" id="1_ig7tw"]
@@ -763,6 +763,21 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_xuqvo"]
 size = Vector3(3.22391, 1, 0.133789)
 
+[sub_resource type="Animation" id="Animation_b1qrp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_facbu"]
 resource_name = "fade"
 length = 3.0
@@ -779,8 +794,8 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_b1qrp"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_0cp0l"]
+resource_name = "fadein"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -788,16 +803,17 @@ tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_come4"]
 _data = {
 &"RESET": SubResource("Animation_b1qrp"),
-&"fade": SubResource("Animation_facbu")
+&"fade": SubResource("Animation_facbu"),
+&"fadein": SubResource("Animation_0cp0l")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_xuqvo"]
@@ -926,33 +942,6 @@ tracks/1/keys = {
 "values": [Color(0.0862745, 0, 0.678431, 0), Color(0.0862745, 0, 0.678431, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_h8e4i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.662745, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label2:label_settings:font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0862745, 0, 0.678431, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_4lmeg"]
 resource_name = "Fadeout"
 length = 2.0
@@ -979,6 +968,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0862745, 0, 0.678431, 1), Color(0.0862745, 0, 0.678431, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h8e4i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.662745, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0862745, 0, 0.678431, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lmeg"]
@@ -2753,11 +2769,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.72046)
 shape = SubResource("BoxShape3D_82xsv")
 
 [node name="QUESTS" type="ColorRect" parent="."]
-anchors_preset = 6
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 0.533951
 offset_left = -255.0
 offset_top = -164.0
 offset_right = -36.0
@@ -2765,6 +2781,7 @@ offset_bottom = 19.0
 grow_horizontal = 0
 grow_vertical = 2
 color = Color(0.498514, 0.997663, 0.637734, 0.121569)
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="QUESTS"]
 layout_mode = 1
@@ -2782,7 +2799,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0597716
+anchor_top = -0.0601093
 anchor_right = -0.0597716
+anchor_bottom = -0.0601093
 offset_left = 19.0
 offset_top = 51.0
 offset_right = 234.0
@@ -2798,7 +2817,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0597716
+anchor_top = -0.147541
 anchor_right = -0.0597716
+anchor_bottom = -0.147541
 offset_left = 19.0
 offset_top = 121.0
 offset_right = 234.0
@@ -2808,18 +2829,34 @@ alignment = 1
 vertical_icon_alignment = 0
 metadata/_edit_use_anchors_ = true
 
+[node name="CheckBox4" type="CheckBox" parent="QUESTS"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0597716
+anchor_top = 0.114754
+anchor_right = -0.0597716
+anchor_bottom = 0.114754
+offset_left = 19.0
+offset_top = 121.0
+offset_right = 234.0
+offset_bottom = 198.0
+text = "COLLECT POPPIES 9/10"
+alignment = 1
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
+
 [node name="Node2D" type="Node2D" parent="QUESTS"]
 position = Vector2(-2249, -247)
 
 [node name="Star07" type="Sprite2D" parent="QUESTS/Node2D"]
 modulate = Color(1, 1, 0.701961, 0)
-position = Vector2(2257, 438)
+position = Vector2(2257, 391)
 scale = Vector2(0.294922, 0.263672)
 texture = ExtResource("17_yaehf")
 
 [node name="Star08" type="Sprite2D" parent="QUESTS/Node2D"]
 modulate = Color(1, 1, 0.701961, 0)
-position = Vector2(2482, 391)
+position = Vector2(2482, 355)
 scale = Vector2(0.294922, 0.263672)
 texture = ExtResource("17_yaehf")
 
@@ -2841,59 +2878,59 @@ transform = Transform3D(-0.0069999, 0, -3.7188e-05, 0, 0.007, 0, 3.7188e-05, 0, 
 script = ExtResource("18_074og")
 
 [node name="Skeleton3D" parent="Hero/AuxScene/Node" index="0"]
-bones/0/position = Vector3(0.189587, 100.851, -0.98857)
-bones/0/rotation = Quaternion(-0.0362731, -0.368081, -0.0137395, 0.928984)
-bones/1/rotation = Quaternion(0.0705533, 0.0411897, -0.00891409, 0.996617)
-bones/2/rotation = Quaternion(0.086486, 0.0805889, -0.0206804, 0.992773)
-bones/3/rotation = Quaternion(0.0947271, 0.0809909, -0.0190495, 0.99202)
-bones/4/rotation = Quaternion(-0.0375601, -0.0110329, 0.00221604, 0.999231)
-bones/5/rotation = Quaternion(-0.0544205, 0.176966, -0.0129395, 0.982626)
-bones/124/rotation = Quaternion(-0.53157, -0.480405, 0.592777, -0.367776)
-bones/125/rotation = Quaternion(0.469453, -0.0698868, 0.136338, 0.869564)
-bones/126/rotation = Quaternion(-0.0125488, 0.0578298, 0.404986, 0.912406)
-bones/127/rotation = Quaternion(-0.164121, 0.140175, 0.0145191, 0.976322)
-bones/128/rotation = Quaternion(0.125945, 0.00633058, -0.0849863, 0.98837)
-bones/129/rotation = Quaternion(0.18971, -0.00131774, 0.014269, 0.981736)
+bones/0/position = Vector3(-0.0408105, 101.037, -0.910656)
+bones/0/rotation = Quaternion(-0.0374722, -0.368253, -0.0136946, 0.928869)
+bones/1/rotation = Quaternion(0.0695393, 0.0407939, -0.00884388, 0.996706)
+bones/2/rotation = Quaternion(0.084594, 0.0796322, -0.0205925, 0.993015)
+bones/3/rotation = Quaternion(0.0928513, 0.0799939, -0.018941, 0.992281)
+bones/4/rotation = Quaternion(-0.0307064, -0.0102599, 0.000721281, 0.999476)
+bones/5/rotation = Quaternion(-0.0589608, 0.177066, -0.0078677, 0.9824)
+bones/124/rotation = Quaternion(-0.527706, -0.484433, 0.591853, -0.369542)
+bones/125/rotation = Quaternion(0.472815, -0.0666103, 0.134851, 0.86823)
+bones/126/rotation = Quaternion(-0.0109717, 0.060286, 0.409653, 0.910181)
+bones/127/rotation = Quaternion(-0.163736, 0.139922, 0.0132619, 0.976441)
+bones/128/rotation = Quaternion(0.135235, 0.005446, -0.0795378, 0.987601)
+bones/129/rotation = Quaternion(0.193645, -0.0013614, 0.0147071, 0.980961)
 bones/130/rotation = Quaternion(0, 0, 0, 1)
-bones/224/rotation = Quaternion(0.266245, -0.0129235, -0.129982, 0.955014)
-bones/225/rotation = Quaternion(0.275526, 0.00168835, 0.0242844, 0.960985)
+bones/224/rotation = Quaternion(0.273766, -0.0141156, -0.123913, 0.953676)
+bones/225/rotation = Quaternion(0.278363, 0.00168198, 0.0244557, 0.960163)
 bones/226/rotation = Quaternion(1.45519e-11, 1.39698e-09, 6.98492e-09, 1)
-bones/320/rotation = Quaternion(0.292214, -0.0135801, -0.163069, 0.94225)
-bones/321/rotation = Quaternion(0.336117, 0.0112095, 0.0497956, 0.940436)
+bones/320/rotation = Quaternion(0.297497, -0.0151695, -0.158009, 0.941435)
+bones/321/rotation = Quaternion(0.339806, 0.0113874, 0.0498333, 0.939106)
 bones/322/rotation = Quaternion(-2.13163e-14, 2.91038e-11, 1.27329e-11, 1)
-bones/416/rotation = Quaternion(0.0339243, -0.00588077, 0.061918, 0.997487)
-bones/417/rotation = Quaternion(0.142791, -0.000713769, -0.00691216, 0.989729)
+bones/416/rotation = Quaternion(0.0434865, -0.00700751, 0.0605491, 0.997193)
+bones/417/rotation = Quaternion(0.145416, -0.000790605, -0.00659071, 0.989348)
 bones/418/rotation = Quaternion(-8.94797e-08, -1.39698e-08, 1.39698e-09, 1)
-bones/512/rotation = Quaternion(0.283265, 0.123127, 0.197888, 0.930291)
-bones/513/rotation = Quaternion(-0.00736327, 0.000656702, -0.000866337, 0.999972)
+bones/512/rotation = Quaternion(0.290508, 0.128736, 0.180621, 0.930811)
+bones/513/rotation = Quaternion(-0.00291773, 0.00164905, -0.00295704, 0.99999)
 bones/514/rotation = Quaternion(-1.11759e-08, 4.09782e-08, -2.98023e-08, 1)
-bones/700/rotation = Quaternion(0.584456, -0.442141, 0.556581, 0.391331)
-bones/701/rotation = Quaternion(0.437465, 0.0700522, 0.0977155, 0.891161)
-bones/702/rotation = Quaternion(0.0446991, 0.0291145, -0.359538, 0.931604)
-bones/703/rotation = Quaternion(0.105431, -0.0648234, -0.10044, 0.987215)
-bones/704/rotation = Quaternion(0.112256, 0.00844302, 0.0236952, 0.993361)
-bones/705/rotation = Quaternion(0.263562, 0.00138694, -0.0169241, 0.964493)
+bones/700/rotation = Quaternion(0.5788, -0.447944, 0.556393, 0.393401)
+bones/701/rotation = Quaternion(0.439843, 0.0660621, 0.0994821, 0.890099)
+bones/702/rotation = Quaternion(0.0503393, 0.0302825, -0.363559, 0.929717)
+bones/703/rotation = Quaternion(0.090646, -0.0480593, -0.0569616, 0.993091)
+bones/704/rotation = Quaternion(0.111569, 0.00806823, 0.0255293, 0.993396)
+bones/705/rotation = Quaternion(0.277801, 0.00149411, -0.0182268, 0.960465)
 bones/706/rotation = Quaternion(0, 0, 0, 1)
-bones/800/rotation = Quaternion(0.188268, -0.00877256, 0.0664849, 0.979825)
-bones/801/rotation = Quaternion(0.320399, -0.00236274, -0.0340459, 0.946668)
+bones/800/rotation = Quaternion(0.195387, -0.00815667, 0.0657339, 0.978487)
+bones/801/rotation = Quaternion(0.327333, -0.0024079, -0.0346286, 0.944271)
 bones/802/rotation = Quaternion(-3.08246e-08, 9.63919e-08, -4.71482e-08, 1)
-bones/896/rotation = Quaternion(0.208424, -0.0114064, 0.0910972, 0.97372)
-bones/897/rotation = Quaternion(0.349249, -0.0122003, -0.0689119, 0.934413)
+bones/896/rotation = Quaternion(0.208994, -0.011426, 0.0911794, 0.97359)
+bones/897/rotation = Quaternion(0.356564, -0.0125623, -0.0693745, 0.931607)
 bones/898/rotation = Quaternion(-1.48982e-08, 2.29848e-08, -6.33499e-08, 1)
-bones/992/rotation = Quaternion(0.0408492, 0.00983866, 0.00941454, 0.999073)
-bones/993/rotation = Quaternion(0.1473, 0.000207389, 0.00973336, 0.989044)
+bones/992/rotation = Quaternion(0.0407972, 0.00996889, 0.0084727, 0.999082)
+bones/993/rotation = Quaternion(0.146272, 0.000124175, 0.00983004, 0.989196)
 bones/994/rotation = Quaternion(1.45519e-10, 4.19095e-09, -9.77889e-09, 1)
-bones/1088/rotation = Quaternion(0.202879, 0.0134776, -0.230645, 0.951557)
-bones/1089/rotation = Quaternion(0.00866672, 0.00165204, 0.183019, 0.98307)
+bones/1088/rotation = Quaternion(0.203147, 0.0136722, -0.232083, 0.951148)
+bones/1089/rotation = Quaternion(0.00789413, 0.00199744, 0.182046, 0.983256)
 bones/1090/rotation = Quaternion(-5.58794e-09, -1.86265e-07, 2.75671e-07, 1)
-bones/1465/rotation = Quaternion(0.0754127, 0.242814, 0.96142, -0.105003)
-bones/1466/rotation = Quaternion(-0.349902, 0.117119, -0.033349, 0.928838)
-bones/1467/rotation = Quaternion(0.536562, -0.118054, 0.0568748, 0.833625)
-bones/1468/rotation = Quaternion(0.297034, -0.0606261, -0.0414305, 0.952039)
-bones/1585/rotation = Quaternion(-0.120766, 0.0441341, 0.982943, 0.131498)
-bones/1586/rotation = Quaternion(-0.343669, 0.0755017, -0.0235529, 0.935755)
-bones/1587/rotation = Quaternion(0.636583, 0.172018, 0.0290628, 0.751217)
-bones/1588/rotation = Quaternion(0.287775, 0.0776396, 0.0147135, 0.954432)
+bones/1465/rotation = Quaternion(0.0767714, 0.237485, 0.962622, -0.105198)
+bones/1466/rotation = Quaternion(-0.344665, 0.118211, -0.0331748, 0.930662)
+bones/1467/rotation = Quaternion(0.535355, -0.118095, 0.0566992, 0.834406)
+bones/1468/rotation = Quaternion(0.296875, -0.0624977, -0.0410793, 0.951983)
+bones/1585/rotation = Quaternion(-0.120614, 0.038467, 0.983254, 0.13109)
+bones/1586/rotation = Quaternion(-0.337655, 0.0765572, -0.023085, 0.937867)
+bones/1587/rotation = Quaternion(0.635269, 0.171443, 0.0282869, 0.75249)
+bones/1588/rotation = Quaternion(0.287891, 0.0768854, 0.0151215, 0.954452)
 
 [node name="JumpExpire" type="Timer" parent="Hero/AnimationPlayer" index="0"]
 wait_time = 1.9
@@ -3024,6 +3061,7 @@ transform = Transform3D(0.379931, 0.176792, 0.907962, -0.690801, 0.707014, 0.151
 shape = SubResource("BoxShape3D_a6jrf")
 
 [node name="Label" type="Label" parent="FindableSword/Area3D"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.368056
 anchor_top = 0.825617

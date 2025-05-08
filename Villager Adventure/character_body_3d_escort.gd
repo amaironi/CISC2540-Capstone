@@ -3,17 +3,20 @@ extends CharacterBody3D
 @onready var camera_3d = $neck/Camera3D
 @onready var neck = $neck
 
-var SPEED = 1
+var SPEED = 1.3
 const JUMP_VELOCITY = 3
 var can_input = true
 var hero_run = false
 var hit = true
-
+var just_once = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
-	pass
+	$"../fadein/AnimationPlayer".play("fadein")
+	$"../Dialogue1/Dia1fade".play("Fadein")
+	SPEED = 0
+	
 	
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,20 +42,16 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("test"):
-		$"../AnimationLibrary_Godot_Standard/AnimationPlayer".play("Jog_Fwd")
-		hero_run = true
-		$"../AnimationLibrary_Godot_Standard/AudioStreamPlayer3D".play()
+	if Input.is_action_just_pressed("swing"):
+		$neck/Camera3D/Node3D/AnimationPlayer.play("Swing")
 	
-	if hero_run == true:
-		$"../AnimationLibrary_Godot_Standard".position.x -= 2*delta
-		$"../AnimationLibrary_Godot_Standard".position.z += 1.5*delta
-	
-	if $"../AnimationLibrary_Godot_Standard".position.x <= 0.5 and hit == true:
-		$"../AnimationLibrary_Godot_Standard/AnimationPlayer".play("Sword_Attack")
-		hit = false
-		hero_run = false
-		$Hit.play("Hit")
+	if just_once == true and Input.is_action_just_pressed("AdvanceDialogue"):
+		just_once = false
+		$"../Dialogue1/Dia1fade".play("Fadeout")
+		SPEED = 1.2
+		$"../Dialogue1/hostiles".play()
+		$"../Dialogue1/herofreeze".start()
+	#$Hit.play("Hit")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -64,4 +63,11 @@ func _input(event):
 		camera_3d.rotate_x(-event.relative.y *0.004)
 		neck.rotate_y(-event.relative.x*0.004)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-30), deg_to_rad(60))
+	
+
+
+func _on_herofreeze_timeout() -> void:
+	$"../Hero/AudioStreamPlayer3D".play()
+	$"../Hero/AnimationPlayer".play("Running")
+	$"../Hero".frozen = false
 	

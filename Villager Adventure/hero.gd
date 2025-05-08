@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 		camera.look_at(target_pos, Vector3(0, 1, 0))
 	
 	if move_to_player == true:
-		$turn_around.stop()
+		#$turn_around.stop()
 		var to_player = $"../CharacterBody3D".position - position
 		to_player.y = 0
 		var distance = to_player.length()

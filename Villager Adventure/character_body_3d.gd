@@ -11,6 +11,7 @@ var can_input = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
+	$"../fadeout/changescenefade".play("fadein")
 	$"../IntroCamera".current = true
 	$"../IntroCamera/Intro".play("Intro")
 	$"../IntroCamera/Timer".start()
