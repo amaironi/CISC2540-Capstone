@@ -9,6 +9,7 @@ var can_input = true
 var hero_run = false
 var hit = true
 var just_once = true
+var can_hit = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -17,6 +18,8 @@ func _ready() -> void:
 	$"../Dialogue1/Dia1fade".play("Fadein")
 	SPEED = 0
 	
+	if $"../Background_ambiance".playing == false:
+		$"../Background_ambiance".play()
 	
 func _physics_process(delta):
 	# Add the gravity.
@@ -42,8 +45,13 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("swing"):
-		$neck/Camera3D/Node3D/AnimationPlayer.play("Swing")
+	if can_hit == true:
+		if Input.is_action_just_pressed("swing"):
+			can_hit = false
+			$"../Hero/wait_to_hit".start()
+			$neck/Camera3D/Node3D/AnimationPlayer.play("Swing")
+
+
 	
 	if just_once == true and Input.is_action_just_pressed("AdvanceDialogue"):
 		just_once = false
@@ -71,3 +79,7 @@ func _on_herofreeze_timeout() -> void:
 	$"../Hero/AnimationPlayer".play("Running")
 	$"../Hero".frozen = false
 	
+
+
+func _on_wait_to_hit_timeout() -> void:
+	can_hit = true # Replace with function body.

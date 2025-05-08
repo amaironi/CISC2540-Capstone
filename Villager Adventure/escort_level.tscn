@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bsj4qjqvolewl"]
+[gd_scene load_steps=53 format=4 uid="uid://bsj4qjqvolewl"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_vacyq"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_mvmy6"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b34kocwfddr0g" path="res://Nature Assets/FBX/Rock_Medium_1.fbx" id="11_dmane"]
 [ext_resource type="AudioStream" uid="uid://pjbpev67x68n" path="res://audio/noneshall.mp3" id="11_irs7x"]
 [ext_resource type="PackedScene" uid="uid://b7vfof6r2nulh" path="res://Nature Assets/FBX/Rock_Medium_2.fbx" id="12_0i68l"]
+[ext_resource type="AudioStream" uid="uid://c10layy5ladgq" path="res://audio/triumphant.mp3" id="12_3xn18"]
 [ext_resource type="AudioStream" uid="uid://c3toutt8gr70h" path="res://audio/hostiles.mp3" id="14_cqi4x"]
 [ext_resource type="PackedScene" uid="uid://6obfim26hef8" path="res://Nature Assets/FBX/TwistedTree_4.fbx" id="14_jsm6c"]
 [ext_resource type="PackedScene" uid="uid://2qnh3t438m6n" path="res://Nature Assets/FBX/Petal_3.fbx" id="15_cqi4x"]
@@ -25,6 +26,7 @@
 [ext_resource type="Script" uid="uid://2lmr16gvdl0i" path="res://enemy.gd" id="23_3vper"]
 [ext_resource type="AudioStream" uid="uid://xonbnvn243m0" path="res://audio/watchout.mp3" id="23_0347m"]
 [ext_resource type="AudioStream" uid="uid://by132xhpisyge" path="res://audio/forest-ambience-26617.mp3" id="25_3vper"]
+[ext_resource type="Texture2D" uid="uid://c14wuvlobb5j2" path="res://addons/kenney_particle_pack/star_07.png" id="27_831fk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cikbd"]
 albedo_texture = ExtResource("1_vacyq")
@@ -133,6 +135,21 @@ sky = SubResource("Sky_ig7tw")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Animation" id="Animation_3baw1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_0i68l"]
 resource_name = "fadein"
 length = 2.5
@@ -147,21 +164,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_3baw1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ycfp5"]
@@ -265,11 +267,120 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0347m"]
-radius = 82.0567
+radius = 82.0565
 height = 164.113
 
 [sub_resource type="LabelSettings" id="LabelSettings_0347m"]
 font_size = 25
+
+[sub_resource type="Animation" id="Animation_cegan"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Star08:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Star07:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Star08:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0.701961, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Star07:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0.701961, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+resource_name = "Sparkle"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Star08:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Star07:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Star08:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.68, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.701961, 0), Color(0.773146, 0.737623, 0.089068, 1), Color(0.772549, 0.737255, 0.0901961, 0.603922), Color(0.8, 0.721569, 0.305882, 1), Color(0.8, 0.721569, 0.305882, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Star07:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.68, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.701961, 0), Color(0.773146, 0.737623, 0.089068, 1), Color(0.772549, 0.737255, 0.0901961, 0.603922), Color(0.8, 0.721569, 0.305882, 1), Color(0.8, 0.721569, 0.305882, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82xsv"]
+_data = {
+&"RESET": SubResource("Animation_cegan"),
+&"Sparkle": SubResource("Animation_074og")
+}
 
 [node name="Node3D" type="Node3D"]
 
@@ -323,6 +434,9 @@ visible = false
 
 [node name="Node3D" parent="CharacterBody3D/neck/Camera3D" instance=ExtResource("7_t5rgv")]
 transform = Transform3D(0.770213, -0.637787, 0, 0.637787, 0.770213, 0, 0, 0, 1, 0.303735, -0.348361, -0.712866)
+
+[node name="MeshInstance3D" parent="CharacterBody3D/neck/Camera3D/Node3D" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
 
 [node name="Hit" type="AnimationPlayer" parent="CharacterBody3D"]
 libraries = {
@@ -783,7 +897,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.196097, -0.0302426, 1
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.28409, -0.0302426, 16.3466)
 
 [node name="Hero" parent="." instance=ExtResource("7_vacyq")]
-transform = Transform3D(-0.00673875, 0, 0.00189453, 0, 0.007, 0, -0.00189453, 0, -0.00673875, 1.02014, 0.7, 13.0466)
+transform = Transform3D(-0.00636675, 0, 0.00290939, 0, 0.007, 0, -0.00290939, 0, -0.00636675, 1.02014, 0.7, 13.0466)
 script = ExtResource("8_0i68l")
 
 [node name="Skeleton3D" parent="Hero/AuxScene/Node" index="0"]
@@ -840,6 +954,16 @@ bones/1588/rotation = Quaternion(0.288175, 0.063594, 0.0194094, 0.955267)
 stream = ExtResource("11_irs7x")
 volume_db = -1.0
 pitch_scale = 0.9
+
+[node name="wait_to_hit" type="Timer" parent="Hero"]
+one_shot = true
+
+[node name="alwaystriumphant" type="AudioStreamPlayer3D" parent="Hero"]
+stream = ExtResource("12_3xn18")
+volume_db = -1.0
+pitch_scale = 0.9
+
+[node name="hero_waithit" type="Timer" parent="Hero"]
 
 [node name="TwistedTree_1" parent="." instance=ExtResource("9_mvmy6")]
 transform = Transform3D(-0.199776, 0, 0.346539, 0, 0.4, 0, -0.346539, 0, -0.199776, 5.26564, 0.201477, 6.52768)
@@ -1233,7 +1357,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.83522, 0.201477, -5.
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.67167, 0.0886709, -12.0309)
 
 [node name="Petal_3" parent="." instance=ExtResource("15_cqi4x")]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 10.3906, -0.00866345, -4.00594)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 11.3894, -0.00866345, 2.75299)
 
 [node name="TwistedTree_52" parent="." instance=ExtResource("16_n3cny")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 9.41176, 0.0240004, -2.59209)
@@ -1246,6 +1370,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.4778, 0.0510372, 10.
 
 [node name="enemy" parent="." instance=ExtResource("22_0347m")]
 transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 3.72295, 0.513068, 5.49754)
+visible = false
 script = ExtResource("23_3vper")
 
 [node name="Skeleton3D" parent="enemy/Node" index="0"]
@@ -1338,6 +1463,89 @@ stream = ExtResource("25_3vper")
 volume_db = -10.0
 autoplay = true
 
+[node name="QUESTS" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.49537
+offset_left = -255.0
+offset_top = -164.0
+offset_right = -36.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.498514, 0.997663, 0.637734, 0.121569)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="QUESTS"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.118503
+anchor_right = -0.118503
+offset_left = 83.0
+offset_top = 10.0
+offset_right = 172.0
+offset_bottom = 33.0
+text = "QUEST LOG"
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckBox" type="CheckBox" parent="QUESTS"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0597716
+anchor_top = -0.0601093
+anchor_right = -0.0597716
+anchor_bottom = -0.0601093
+offset_left = 19.0
+offset_top = 51.0
+offset_right = 234.0
+offset_bottom = 128.0
+toggle_mode = false
+text = "ESCORT THE VILLAGER"
+alignment = 1
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckBox4" type="CheckBox" parent="QUESTS"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0597716
+anchor_top = -0.104758
+anchor_right = -0.0597716
+anchor_bottom = -0.104758
+offset_left = 19.0
+offset_top = 121.0
+offset_right = 234.0
+offset_bottom = 198.0
+text = "COLLECT POPPIES 9/10"
+alignment = 1
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D" type="Node2D" parent="QUESTS"]
+position = Vector2(-2249, -247)
+
+[node name="Star07" type="Sprite2D" parent="QUESTS/Node2D"]
+modulate = Color(1, 1, 0.701961, 0)
+position = Vector2(2257, 391)
+scale = Vector2(0.294922, 0.263672)
+texture = ExtResource("27_831fk")
+
+[node name="Star08" type="Sprite2D" parent="QUESTS/Node2D"]
+modulate = Color(1, 1, 0.701961, 0)
+position = Vector2(2470, 364)
+scale = Vector2(0.294922, 0.263672)
+texture = ExtResource("27_831fk")
+
+[node name="SparklerQuest" type="AnimationPlayer" parent="QUESTS/Node2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_82xsv")
+}
+
+[connection signal="timeout" from="Hero/wait_to_hit" to="CharacterBody3D" method="_on_wait_to_hit_timeout"]
+[connection signal="timeout" from="Hero/wait_to_hit" to="enemy" method="_on_wait_to_hit_timeout"]
+[connection signal="timeout" from="Hero/hero_waithit" to="Hero" method="_on_hero_waithit_timeout"]
 [connection signal="timeout" from="Dialogue1/herofreeze" to="CharacterBody3D" method="_on_herofreeze_timeout"]
 [connection signal="area_shape_entered" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_entered"]
 [connection signal="area_shape_exited" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_exited"]

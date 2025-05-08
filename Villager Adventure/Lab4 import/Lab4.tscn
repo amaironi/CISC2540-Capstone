@@ -160,6 +160,9 @@ text = "YOU LOSE
 [node name="Sword" parent="CharacterBody3D/neck" instance=ExtResource("2_ew2x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446125, -0.502171, -1.1)
 
+[node name="MeshInstance3D" parent="CharacterBody3D/neck/Sword" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
+
 [node name="dead" type="AnimationPlayer" parent="CharacterBody3D"]
 libraries = {
 &"": SubResource("AnimationLibrary_2r4uw")
@@ -197,6 +200,9 @@ one_shot = true
 
 [node name="Sword_enemy" parent="Enemy" instance=ExtResource("2_ew2x3")]
 transform = Transform3D(0.986763, -0.0115297, 0.16176, 0.1587, -0.136573, -0.977835, 0.0333663, 0.990563, -0.132936, 0.161628, -0.39843, 1.00002)
+
+[node name="MeshInstance3D" parent="Enemy/Sword_enemy" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
 
 [node name="attack_timer" type="Timer" parent="Enemy"]
 wait_time = 0.9
