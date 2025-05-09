@@ -1,3 +1,136 @@
-[gd_scene format=3 uid="uid://d4g8gkqsi0tvw"]
+[gd_scene load_steps=13 format=3 uid="uid://d4g8gkqsi0tvw"]
+
+[ext_resource type="PackedScene" uid="uid://dkityrj2ltoeo" path="res://Lab4 import/sword.tscn" id="2_qt6nr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_edh6e"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.0955415, 0.103511, 0.0828111, 1)
+ground_bottom_color = Color(0.0734897, 0.105367, 0.022568, 1)
+ground_horizon_color = Color(0.0955415, 0.103511, 0.0828111, 1)
+
+[sub_resource type="Sky" id="Sky_h0aww"]
+sky_material = SubResource("ProceduralSkyMaterial_edh6e")
+
+[sub_resource type="Environment" id="Environment_tvybu"]
+background_mode = 2
+sky = SubResource("Sky_h0aww")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7678y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fp1em"]
+
+[sub_resource type="Animation" id="Animation_uy1db"]
+resource_name = "dead"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.51844, 0, 2.0944)]
+}
+
+[sub_resource type="Animation" id="Animation_exsel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oemhk"]
+_data = {
+&"RESET": SubResource("Animation_exsel"),
+&"dead": SubResource("Animation_uy1db")
+}
+
+[sub_resource type="Animation" id="Animation_5ig2u"]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.27, 0.63, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.393624, 7.13677e-09, 0.185092), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4c1hj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xu321"]
+_data = {
+&"Hit": SubResource("Animation_5ig2u"),
+&"RESET": SubResource("Animation_4c1hj")
+}
 
 [node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.791224, -0.540945, 0.285208, 0, 0.466387, 0.884581, -0.611527, 0.699901, -0.369016, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tvybu")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="WorldEnvironment"]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -0.502938, 0.0607402, 14.3906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/CharacterBody3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.352124, 0)
+shape = SubResource("CapsuleShape3D_7678y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/CharacterBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_fp1em")
+
+[node name="neck" type="MeshInstance3D" parent="WorldEnvironment/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.561764, 0)
+
+[node name="Camera3D" type="Camera3D" parent="WorldEnvironment/CharacterBody3D/neck"]
+transform = Transform3D(0.555556, 0, 0, 0, 0.555556, 0, 0, 0, 0.555556, 0, 0, 0)
+current = true
+
+[node name="Node3D" parent="WorldEnvironment/CharacterBody3D/neck/Camera3D" instance=ExtResource("2_qt6nr")]
+transform = Transform3D(0.770213, -0.637787, 0, 0.637787, 0.770213, 0, 0, 0, 1, 0.303735, -0.348361, -0.712866)
+
+[node name="dead" type="AnimationPlayer" parent="WorldEnvironment/CharacterBody3D/neck/Camera3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_oemhk")
+}
+
+[node name="Hit" type="AnimationPlayer" parent="WorldEnvironment/CharacterBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_xu321")
+}
+
+[editable path="WorldEnvironment/CharacterBody3D/neck/Camera3D/Node3D"]
