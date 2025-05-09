@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://dwmmu5xay6dsk"]
+[gd_scene load_steps=64 format=4 uid="uid://dwmmu5xay6dsk"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_an00k"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_3wss1"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://by132xhpisyge" path="res://audio/forest-ambience-26617.mp3" id="27_d4nq8"]
 [ext_resource type="Texture2D" uid="uid://c14wuvlobb5j2" path="res://addons/kenney_particle_pack/star_07.png" id="28_u4k2a"]
 [ext_resource type="Script" uid="uid://d28m2vtnktdrt" path="res://enemy2.gd" id="29_8y1i6"]
+[ext_resource type="PackedScene" uid="uid://cbosnboimsl4x" path="res://Medieval Village MegaKit[Standard]/FBX/Wall_UnevenBrick_Door_Round.fbx" id="31_24ymh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cikbd"]
 albedo_texture = ExtResource("1_an00k")
@@ -1241,9 +1242,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.85346, 0.0486641, -0.667774
 [node name="CommonTree_8" parent="treebg/treebg2" instance=ExtResource("16_upjgb")]
 transform = Transform3D(0.579907, 0, 0.814683, 0, 1, 0, -0.814683, 0, 0.579907, 7.36275, 0.0486641, -0.667774)
 
-[node name="CommonTree_9" parent="treebg/treebg2" instance=ExtResource("16_upjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38268, 0.0486641, -0.667774)
-
 [node name="CommonTree_10" parent="treebg/treebg2" instance=ExtResource("16_upjgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.639774, 0.0486641, -0.667774)
 
@@ -1252,9 +1250,6 @@ transform = Transform3D(0.579907, 0, 0.814683, 0, 1, 0, -0.814683, 0, 0.579907, 
 
 [node name="CommonTree_12" parent="treebg/treebg2" instance=ExtResource("16_upjgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17097, 0.0486641, -0.667774)
-
-[node name="CommonTree_13" parent="treebg/treebg2" instance=ExtResource("16_upjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.42807, 0.0486641, -0.667774)
 
 [node name="CommonTree_14" parent="treebg/treebg2" instance=ExtResource("16_upjgb")]
 transform = Transform3D(0.579907, 0, 0.814683, 0, 1, 0, -0.814683, 0, 0.579907, -6.91877, 0.0486641, -0.667774)
@@ -1310,14 +1305,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.85346, 0.0486641, -0.667774
 [node name="CommonTree_8" parent="treebg/treebg2/CommonTree_24" instance=ExtResource("16_upjgb")]
 transform = Transform3D(0.579907, 0, 0.814683, 0, 1, 0, -0.814683, 0, 0.579907, 7.36275, 0.0486641, -0.667774)
 
-[node name="CommonTree_9" parent="treebg/treebg2/CommonTree_24" instance=ExtResource("16_upjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38268, 0.0486641, -0.667774)
-
 [node name="CommonTree_10" parent="treebg/treebg2/CommonTree_24" instance=ExtResource("16_upjgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.639774, 0.0486641, -0.667774)
-
-[node name="CommonTree_11" parent="treebg/treebg2/CommonTree_24" instance=ExtResource("16_upjgb")]
-transform = Transform3D(0.579907, 0, 0.814683, 0, 1, 0, -0.814683, 0, 0.579907, -2.13048, 0.0486641, -0.667774)
 
 [node name="CommonTree_12" parent="treebg/treebg2/CommonTree_24" instance=ExtResource("16_upjgb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17097, 0.0486641, -0.667774)
@@ -1361,7 +1350,7 @@ transform = Transform3D(0.579907, 0, 0.814683, 0, 1, 0, -0.814683, 0, 0.579907, 
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 10.8487, -24.1308, 7.74632)
 
 [node name="Rock_Medium_2" parent="mountainbg/Rock_Medium_1" instance=ExtResource("17_fobww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84984, 3.83951, -7.10793)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10256, 3.83951, -7.10793)
 
 [node name="Rock_Medium_3" parent="mountainbg/Rock_Medium_1" instance=ExtResource("17_fobww")]
 transform = Transform3D(0.0935175, 0, 0.995618, 0, 1, 0, -0.995618, 0, 0.0935175, -4.59231, 3.55182, -4.11471)
@@ -1756,6 +1745,9 @@ one_shot = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy2/Area3D"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 4.14969, -24.8998, 13.2913)
 shape = SubResource("CapsuleShape3D_uy1db")
+
+[node name="Wall_UnevenBrick_Door_Round" parent="." instance=ExtResource("31_24ymh")]
+transform = Transform3D(0.98685, 0, 0.161638, 0, 1, 0, -0.161638, 0, 0.98685, 0.388469, -5.94216e-08, -25.1443)
 
 [connection signal="timeout" from="Hero/wait_to_hit" to="CharacterBody3D" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/wait_to_hit" to="enemy" method="_on_wait_to_hit_timeout"]
