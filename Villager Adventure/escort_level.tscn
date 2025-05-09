@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://bsj4qjqvolewl"]
+[gd_scene load_steps=64 format=4 uid="uid://bsj4qjqvolewl"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_vacyq"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_mvmy6"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://r6l1byi5iova" path="res://audio/poppies.mp3" id="13_exsel"]
 [ext_resource type="AudioStream" uid="uid://e16c8hujx82l" path="res://audio/Useless.mp3" id="13_uy1db"]
 [ext_resource type="AudioStream" uid="uid://c3toutt8gr70h" path="res://audio/hostiles.mp3" id="14_cqi4x"]
+[ext_resource type="AudioStream" uid="uid://d3n1tkw44qto" path="res://audio/letsgo.mp3" id="14_exsel"]
 [ext_resource type="PackedScene" uid="uid://6obfim26hef8" path="res://Nature Assets/FBX/TwistedTree_4.fbx" id="14_jsm6c"]
 [ext_resource type="PackedScene" uid="uid://2qnh3t438m6n" path="res://Nature Assets/FBX/Petal_3.fbx" id="15_cqi4x"]
 [ext_resource type="PackedScene" uid="uid://g5m4xkf7yxdw" path="res://Nature Assets/glTF/TwistedTree_5.gltf" id="16_n3cny"]
@@ -173,6 +174,43 @@ background_mode = 2
 sky = SubResource("Sky_ig7tw")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_oemhk"]
+resource_name = "fadein"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vphws"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_olwnj"]
+_data = {
+&"RESET": SubResource("Animation_vphws"),
+&"fadein": SubResource("Animation_oemhk")
+}
 
 [sub_resource type="Animation" id="Animation_3baw1"]
 length = 0.001
@@ -1008,6 +1046,15 @@ stream = ExtResource("13_exsel")
 volume_db = -1.0
 pitch_scale = 0.9
 
+[node name="cheating" type="Timer" parent="Hero"]
+wait_time = 5.0
+one_shot = true
+
+[node name="letsgo" type="AudioStreamPlayer3D" parent="Hero/cheating"]
+stream = ExtResource("14_exsel")
+volume_db = -1.0
+pitch_scale = 0.9
+
 [node name="TwistedTree_1" parent="." instance=ExtResource("9_mvmy6")]
 transform = Transform3D(-0.199776, 0, 0.346539, 0, 0.4, 0, -0.346539, 0, -0.199776, 5.26564, 0.201477, 6.52768)
 
@@ -1351,9 +1398,9 @@ offset_bottom = -86.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fadein"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="fadein"]
 libraries = {
-&"": SubResource("AnimationLibrary_ycfp5")
+&"": SubResource("AnimationLibrary_olwnj")
 }
 
 [node name="hit" type="ColorRect" parent="."]
@@ -1507,12 +1554,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.7595)
 shape = SubResource("CapsuleShape3D_0347m")
 
 [node name="Label" type="Label" parent="."]
-visible = false
-anchors_preset = -1
-anchor_left = 0.427517
-anchor_top = 0.482253
-anchor_right = 0.572483
-anchor_bottom = 0.517747
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = -17.5
+offset_right = 129.5
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "LEFT CLICK TO SWING"
@@ -1697,12 +1747,13 @@ text = "QUEST FAILED: THE VILLAGER DIED"
 label_settings = SubResource("LabelSettings_nyldh")
 
 [node name="restart" type="Timer" parent="questfailed"]
-wait_time = 2.5
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="Hero/wait_to_hit" to="CharacterBody3D" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/wait_to_hit" to="enemy" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/hero_waithit" to="Hero" method="_on_hero_waithit_timeout"]
+[connection signal="timeout" from="Hero/cheating" to="CharacterBody3D" method="_on_cheating_timeout"]
 [connection signal="timeout" from="Dialogue1/herofreeze" to="CharacterBody3D" method="_on_herofreeze_timeout"]
 [connection signal="area_shape_entered" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_entered"]
 [connection signal="area_shape_exited" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_exited"]

@@ -14,7 +14,7 @@ var can_hit = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
-	$"../fadein/AnimationPlayer".play("fadein")
+	$"../fadein/AnimationPlayer2".play("fadein")
 	$"../Dialogue1/Dia1fade".play("Fadein")
 	SPEED = 0
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dwmmu5xay6dsk"]
+[gd_scene load_steps=63 format=4 uid="uid://dwmmu5xay6dsk"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_an00k"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_3wss1"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://e16c8hujx82l" path="res://audio/Useless.mp3" id="12_3lffy"]
 [ext_resource type="AudioStream" uid="uid://r6l1byi5iova" path="res://audio/poppies.mp3" id="13_ikaa1"]
 [ext_resource type="PackedScene" uid="uid://bjmdlgwnnks8h" path="res://Nature Assets/FBX/TwistedTree_1.fbx" id="14_2gx3j"]
+[ext_resource type="AudioStream" uid="uid://d3n1tkw44qto" path="res://audio/letsgo.mp3" id="14_3wss1"]
 [ext_resource type="PackedScene" uid="uid://c4l07gmk6bv6q" path="res://Nature Assets/FBX/CommonTree_5.fbx" id="15_nmb6p"]
 [ext_resource type="PackedScene" uid="uid://c08ngam2schs3" path="res://Nature Assets/FBX/CommonTree_1.fbx" id="16_upjgb"]
 [ext_resource type="PackedScene" uid="uid://b34kocwfddr0g" path="res://Nature Assets/FBX/Rock_Medium_1.fbx" id="17_fobww"]
@@ -24,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://g5m4xkf7yxdw" path="res://Nature Assets/glTF/TwistedTree_5.gltf" id="22_8ido4"]
 [ext_resource type="PackedScene" uid="uid://0d5ueyjh5x7l" path="res://Nature Assets/glTF/TwistedTree_3.gltf" id="23_ibf2w"]
 [ext_resource type="PackedScene" uid="uid://kyide0qcfusk" path="res://enemy.glb" id="24_m8hv6"]
-[ext_resource type="Script" uid="uid://2lmr16gvdl0i" path="res://enemy.gd" id="25_4tvh5"]
+[ext_resource type="Script" uid="uid://ctm2dsk53clyh" path="res://enemy_invincible.gd" id="26_3wss1"]
 [ext_resource type="AudioStream" uid="uid://xonbnvn243m0" path="res://audio/watchout.mp3" id="26_yepfe"]
 [ext_resource type="AudioStream" uid="uid://by132xhpisyge" path="res://audio/forest-ambience-26617.mp3" id="27_d4nq8"]
 [ext_resource type="Texture2D" uid="uid://c14wuvlobb5j2" path="res://addons/kenney_particle_pack/star_07.png" id="28_u4k2a"]
@@ -299,6 +300,68 @@ height = 164.113
 
 [sub_resource type="LabelSettings" id="LabelSettings_0347m"]
 font_size = 25
+font_color = Color(0.619608, 0.117647, 0.215686, 1)
+
+[sub_resource type="Animation" id="Animation_3wss1"]
+resource_name = "invicible"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["INVINCIBILITY: FALSE", "INVINCIBILITY: TRUE"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.8, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.619608, 0.117647, 0.215686, 1), Color(0.619608, 1, 0.215686, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_24ymh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["INVINCIBILITY: FALSE"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.619608, 0.117647, 0.215686, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fguj7"]
+_data = {
+&"RESET": SubResource("Animation_24ymh"),
+&"invicible": SubResource("Animation_3wss1")
+}
 
 [sub_resource type="Animation" id="Animation_cegan"]
 length = 0.001
@@ -412,10 +475,6 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy1db"]
 radius = 57.6573
 height = 179.114
-
-[sub_resource type="LabelSettings" id="LabelSettings_nyldh"]
-font_size = 25
-font_color = Color(1, 0.360784, 0.160784, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -1008,6 +1067,15 @@ stream = ExtResource("13_ikaa1")
 volume_db = -1.0
 pitch_scale = 0.9
 
+[node name="cheating" type="Timer" parent="Hero"]
+wait_time = 4.5
+one_shot = true
+
+[node name="letsgo" type="AudioStreamPlayer3D" parent="Hero/cheating"]
+stream = ExtResource("14_3wss1")
+volume_db = -1.0
+pitch_scale = 0.9
+
 [node name="TwistedTree_1" parent="." instance=ExtResource("14_2gx3j")]
 transform = Transform3D(-0.199776, 0, 0.346539, 0, 0.4, 0, -0.346539, 0, -0.199776, 5.26564, 0.201477, 6.52768)
 
@@ -1431,7 +1499,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.4778, 0.0510372, 10.
 [node name="enemy" parent="." instance=ExtResource("24_m8hv6")]
 transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 3.72295, 0.513068, 5.49754)
 visible = false
-script = ExtResource("25_4tvh5")
+script = ExtResource("26_3wss1")
 
 [node name="Skeleton3D" parent="enemy/Node" index="0"]
 bones/0/position = Vector3(-0.50982, 104.987, -53.4848)
@@ -1506,17 +1574,26 @@ text = "Health: 100"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.7595)
 shape = SubResource("CapsuleShape3D_0347m")
 
-[node name="Label" type="Label" parent="."]
+[node name="invicibilitytext" type="Label" parent="."]
 visible = false
-anchors_preset = -1
-anchor_left = 0.427517
-anchor_top = 0.482253
-anchor_right = 0.572483
-anchor_bottom = 0.517747
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = -17.5
+offset_right = 129.5
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "LEFT CLICK TO SWING"
+text = "INVINCIBILITY: FALSE"
 label_settings = SubResource("LabelSettings_0347m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="invicibilitytext"]
+libraries = {
+&"": SubResource("AnimationLibrary_fguj7")
+}
 
 [node name="Background_ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_d4nq8")
@@ -1680,36 +1757,16 @@ one_shot = true
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 4.14969, -24.8998, 13.2913)
 shape = SubResource("CapsuleShape3D_uy1db")
 
-[node name="questfailed" type="Label" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -208.0
-offset_top = -17.5
-offset_right = 208.0
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "QUEST FAILED: THE VILLAGER DIED"
-label_settings = SubResource("LabelSettings_nyldh")
-
-[node name="restart" type="Timer" parent="questfailed"]
-wait_time = 2.5
-one_shot = true
-
 [connection signal="timeout" from="Hero/wait_to_hit" to="CharacterBody3D" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/wait_to_hit" to="enemy" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/hero_waithit" to="Hero" method="_on_hero_waithit_timeout"]
+[connection signal="timeout" from="Hero/cheating" to="CharacterBody3D" method="_on_cheating_timeout"]
 [connection signal="timeout" from="Dialogue1/herofreeze" to="CharacterBody3D" method="_on_herofreeze_timeout"]
 [connection signal="area_shape_entered" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_entered"]
 [connection signal="area_shape_exited" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_exited"]
 [connection signal="timeout" from="enemy2/hit_reset" to="enemy2" method="_on_hit_reset_timeout"]
 [connection signal="area_shape_entered" from="enemy2/Area3D" to="enemy2" method="_on_area_3d_area_shape_entered"]
 [connection signal="area_shape_exited" from="enemy2/Area3D" to="enemy2" method="_on_area_3d_area_shape_exited"]
-[connection signal="timeout" from="questfailed/restart" to="enemy2" method="_on_restart_timeout"]
 
 [editable path="CharacterBody3D/neck/Camera3D/Node3D"]
 [editable path="Hero"]

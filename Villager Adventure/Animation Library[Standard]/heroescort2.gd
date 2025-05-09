@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		$"../enemy".visible = true
 		$"../enemy/AnimationPlayer".play("Drop")
 		$"../enemy".frozen = false
-		$"../Label".visible = true
+
 		
 	if hit_back == true and wait_to_hit == false:
 		$AnimationPlayer.play("Striking")

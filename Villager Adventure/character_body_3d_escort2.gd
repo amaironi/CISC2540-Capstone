@@ -76,9 +76,18 @@ func _input(event):
 
 func _on_herofreeze_timeout() -> void:
 	$"../Hero/donthavetime".play()
-	#$"../Hero/AnimationPlayer".play("Running")
+	$"../Hero/cheating".start()
+	$"../invicibilitytext".visible = true
+	$"../invicibilitytext/AnimationPlayer".play("invicible")
 	
 
 
 func _on_wait_to_hit_timeout() -> void:
 	can_hit = true # Replace with function body.
+
+
+func _on_cheating_timeout() -> void:
+	$"../Hero/cheating/letsgo".play()
+	$"../Hero/AnimationPlayer".play("Running")
+	$"../Hero".frozen = false
+	$"../invicibilitytext".visible = false

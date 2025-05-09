@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		$"../CharacterBody3D/neck/Camera3D/dead".play("dead")
 		$"../CharacterBody3D/neck/Camera3D/Node3D".visible = false
 		$"../CharacterBody3D".can_input = false
-		$"../questfailed".visible = true
+		#$"../questfailed".visible = true
 		$"../questfailed/restart".start()
 		frozen = true
 	
