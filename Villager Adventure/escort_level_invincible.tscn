@@ -1803,10 +1803,10 @@ shape = SubResource("CapsuleShape3D_uy1db")
 transform = Transform3D(0.98685, 0, 0.161638, 0, 1, 0, -0.161638, 0, 0.98685, 0.388469, -5.94216e-08, -25.1443)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.65)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.420397, 0, -22.7666)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0744019, 0.612538, -1.28344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0744019, 0.612538, -0.0770969)
 shape = SubResource("BoxShape3D_2ehhi")
 
 [node name="ColorRect" type="ColorRect" parent="Area3D"]

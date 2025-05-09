@@ -79,6 +79,7 @@ func _process(delta: float) -> void:
 		$evillair.play()
 	
 	if go_finish == true:
+		speed = 1.5
 		var finish = $"../Area3D"
 		var target_position = Vector3(finish.position.x, position.y, finish.position.z)
 		var to_finish = target_position - position
