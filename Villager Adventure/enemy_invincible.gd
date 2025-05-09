@@ -54,7 +54,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("swing") and can_hit == true and damageable == true:
 		hp -= 2
 		damageable = false
-		$"../Label".visible = false
 		$"../Hero/AnimationPlayer".play("Idle")
 		
 	$Label3D.text = "HP: " + str(hp)

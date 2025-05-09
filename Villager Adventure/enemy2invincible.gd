@@ -20,7 +20,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var player = $"../CharacterBody3D"
 	var target_position = Vector3(player.position.x, position.y, player.position.z)
-	look_at(Vector3(player.position.x,0.6,player.position.z),Vector3.UP,true)
+	
 
 	if activate == true and just_once == true:
 		visible = true
@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 	if frozen == false:
 		var to_player = target_position - position
 		var distance = to_player.length()
+		look_at(Vector3(player.position.x,0.6,player.position.z),Vector3.UP,true)
 
 		if distance > stop_distance:
 			var direction = to_player.normalized()
@@ -43,18 +44,20 @@ func _process(delta: float) -> void:
 			$"../hit/AnimationPlayer".play("fadein")
 			$hit_reset.start()
 			just_once_2 = false
-	if hits == 3 and just_once_3 == true:
-		$"../Hero/useless".play()
-		just_once_3 = false
-		$"../CharacterBody3D/neck/Camera3D/dead".play("dead")
-		$"../CharacterBody3D/neck/Camera3D/Node3D".visible = false
-		$"../CharacterBody3D".can_input = false
-		$"../questfailed".visible = true
-		$"../questfailed/restart".start()
-		frozen = true
+
 	
 	if Input.is_action_just_pressed("swing") and can_be_hit == true:
 		hp -= 2
+		
+	if hp <= 0:
+		frozen = true
+		$"../Hero".attack_enemy_2 = false
+		visible = false
+		position.y -= 100
+		$"../Hero".go_finish = true
+
+		
+
 
 func _on_hit_reset_timeout() -> void:
 	just_once_2 = true

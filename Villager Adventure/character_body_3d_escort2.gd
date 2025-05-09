@@ -18,8 +18,6 @@ func _ready() -> void:
 	$"../Dialogue1/Dia1fade".play("Fadein")
 	SPEED = 0
 	
-	if $"../Background_ambiance".playing == false:
-		$"../Background_ambiance".play()
 	
 func _physics_process(delta):
 	# Add the gravity.
@@ -51,7 +49,8 @@ func _physics_process(delta):
 			$"../Hero/wait_to_hit".start()
 			$neck/Camera3D/Node3D/AnimationPlayer.play("Swing")
 
-
+	if $"../Background_ambiance".playing == false:
+		$"../Background_ambiance".play()
 	
 	if just_once == true and Input.is_action_just_pressed("AdvanceDialogue"):
 		just_once = false
@@ -91,3 +90,11 @@ func _on_cheating_timeout() -> void:
 	$"../Hero/AnimationPlayer".play("Running")
 	$"../Hero".frozen = false
 	$"../invicibilitytext".visible = false
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	$"../Area3D/ColorRect/AnimationPlayer".play("fadeout")
+	$"../Area3D/Timer".start()
+
+func _on_timer_timeout() -> void:
+	print("BYE")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://dwmmu5xay6dsk"]
+[gd_scene load_steps=69 format=4 uid="uid://dwmmu5xay6dsk"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_an00k"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_3wss1"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://r6l1byi5iova" path="res://audio/poppies.mp3" id="13_ikaa1"]
 [ext_resource type="PackedScene" uid="uid://bjmdlgwnnks8h" path="res://Nature Assets/FBX/TwistedTree_1.fbx" id="14_2gx3j"]
 [ext_resource type="AudioStream" uid="uid://d3n1tkw44qto" path="res://audio/letsgo.mp3" id="14_3wss1"]
+[ext_resource type="AudioStream" uid="uid://chuexbcgkppb0" path="res://audio/evillair.mp3" id="15_g6p3l"]
 [ext_resource type="PackedScene" uid="uid://c4l07gmk6bv6q" path="res://Nature Assets/FBX/CommonTree_5.fbx" id="15_nmb6p"]
 [ext_resource type="PackedScene" uid="uid://c08ngam2schs3" path="res://Nature Assets/FBX/CommonTree_1.fbx" id="16_upjgb"]
 [ext_resource type="PackedScene" uid="uid://b34kocwfddr0g" path="res://Nature Assets/FBX/Rock_Medium_1.fbx" id="17_fobww"]
@@ -29,7 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://xonbnvn243m0" path="res://audio/watchout.mp3" id="26_yepfe"]
 [ext_resource type="AudioStream" uid="uid://by132xhpisyge" path="res://audio/forest-ambience-26617.mp3" id="27_d4nq8"]
 [ext_resource type="Texture2D" uid="uid://c14wuvlobb5j2" path="res://addons/kenney_particle_pack/star_07.png" id="28_u4k2a"]
-[ext_resource type="Script" uid="uid://d28m2vtnktdrt" path="res://enemy2.gd" id="29_8y1i6"]
+[ext_resource type="Script" uid="uid://dn3682rkdk8wy" path="res://enemy2invincible.gd" id="30_fguj7"]
 [ext_resource type="PackedScene" uid="uid://cbosnboimsl4x" path="res://Medieval Village MegaKit[Standard]/FBX/Wall_UnevenBrick_Door_Round.fbx" id="31_24ymh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cikbd"]
@@ -476,6 +477,46 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy1db"]
 radius = 57.6573
 height = 179.114
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ehhi"]
+size = Vector3(3.13806, 1, 1.07227)
+
+[sub_resource type="Animation" id="Animation_fguj7"]
+resource_name = "fadeout"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g6p3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5mqa"]
+_data = {
+&"RESET": SubResource("Animation_g6p3l"),
+&"fadeout": SubResource("Animation_fguj7")
+}
 
 [node name="Node3D" type="Node3D"]
 
@@ -1077,6 +1118,18 @@ stream = ExtResource("14_3wss1")
 volume_db = -1.0
 pitch_scale = 0.9
 
+[node name="attackenemy2" type="Timer" parent="Hero"]
+wait_time = 2.5
+
+[node name="invincible_hit" type="Timer" parent="Hero"]
+wait_time = 0.6
+one_shot = true
+
+[node name="evillair" type="AudioStreamPlayer3D" parent="Hero"]
+stream = ExtResource("15_g6p3l")
+volume_db = -1.0
+pitch_scale = 0.9
+
 [node name="TwistedTree_1" parent="." instance=ExtResource("14_2gx3j")]
 transform = Transform3D(-0.199776, 0, 0.346539, 0, 0.4, 0, -0.346539, 0, -0.199776, 5.26564, 0.201477, 6.52768)
 
@@ -1672,7 +1725,7 @@ libraries = {
 [node name="enemy2" parent="." instance=ExtResource("24_m8hv6")]
 transform = Transform3D(0.00378378, 0, 0.00326849, 0, 0.005, 0, -0.00326849, 0, 0.00378378, -3.07077, 0.505077, -5.12801)
 visible = false
-script = ExtResource("29_8y1i6")
+script = ExtResource("30_fguj7")
 
 [node name="Skeleton3D" parent="enemy2/Node" index="0"]
 bones/0/position = Vector3(-0.195838, 100.021, 1.37963)
@@ -1749,16 +1802,50 @@ shape = SubResource("CapsuleShape3D_uy1db")
 [node name="Wall_UnevenBrick_Door_Round" parent="." instance=ExtResource("31_24ymh")]
 transform = Transform3D(0.98685, 0, 0.161638, 0, 1, 0, -0.161638, 0, 0.98685, 0.388469, -5.94216e-08, -25.1443)
 
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.65)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0744019, 0.612538, -1.28344)
+shape = SubResource("BoxShape3D_2ehhi")
+
+[node name="ColorRect" type="ColorRect" parent="Area3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1330.0
+offset_top = -805.0
+offset_right = 1330.0
+offset_bottom = 805.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area3D/ColorRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_j5mqa")
+}
+
+[node name="Timer" type="Timer" parent="Area3D"]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="Hero/wait_to_hit" to="CharacterBody3D" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/wait_to_hit" to="enemy" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/hero_waithit" to="Hero" method="_on_hero_waithit_timeout"]
 [connection signal="timeout" from="Hero/cheating" to="CharacterBody3D" method="_on_cheating_timeout"]
+[connection signal="timeout" from="Hero/attackenemy2" to="Hero" method="_on_attackenemy_2_timeout"]
+[connection signal="timeout" from="Hero/invincible_hit" to="Hero" method="_on_invincible_hit_timeout"]
 [connection signal="timeout" from="Dialogue1/herofreeze" to="CharacterBody3D" method="_on_herofreeze_timeout"]
 [connection signal="area_shape_entered" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_entered"]
 [connection signal="area_shape_exited" from="enemy/enemyhitbox" to="enemy" method="_on_enemyhitbox_area_shape_exited"]
 [connection signal="timeout" from="enemy2/hit_reset" to="enemy2" method="_on_hit_reset_timeout"]
 [connection signal="area_shape_entered" from="enemy2/Area3D" to="enemy2" method="_on_area_3d_area_shape_entered"]
 [connection signal="area_shape_exited" from="enemy2/Area3D" to="enemy2" method="_on_area_3d_area_shape_exited"]
+[connection signal="body_entered" from="Area3D" to="CharacterBody3D" method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Area3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
 
 [editable path="CharacterBody3D/neck/Camera3D/Node3D"]
 [editable path="Hero"]
