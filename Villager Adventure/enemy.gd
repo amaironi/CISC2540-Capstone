@@ -49,6 +49,7 @@ func _process(delta: float) -> void:
 	if win == true and just_once == true:
 		$"../Hero/alwaystriumphant".play()
 		just_once = false
+		$"../Hero".second_enemy = true
 	
 	
 	if Input.is_action_just_pressed("swing") and can_hit == true and damageable == true:
