@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://d4g8gkqsi0tvw"]
+[gd_scene load_steps=49 format=3 uid="uid://d4g8gkqsi0tvw"]
 
 [ext_resource type="Texture2D" uid="uid://lf6o5s8ko3bp" path="res://darkrocks.jpeg" id="1_fp1em"]
 [ext_resource type="ArrayMesh" uid="uid://b4chvhgbsiebr" path="res://Medieval Village MegaKit[Standard]/OBJ/Wall_UnevenBrick_Door_Round.obj" id="2_7ijlv"]
@@ -262,6 +262,10 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_77v52"]
 font_size = 30
 font_color = Color(0.745098, 0, 0.164706, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_77v52"]
+radius = 67.1023
+height = 149.019
 
 [sub_resource type="LabelSettings" id="LabelSettings_i6nld"]
 font_size = 30
@@ -580,6 +584,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_xu321")
 }
 
+[node name="waithit" type="Timer" parent="CharacterBody3D2"]
+wait_time = 1.9
+
 [node name="torches" parent="." instance=ExtResource("4_6gx7d")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 8.31544, 0.495046, 14.0866)
 
@@ -750,6 +757,12 @@ grow_horizontal = 2
 text = "EVILIUS, THE STEALER OF CHOCOLATE: 200"
 label_settings = SubResource("LabelSettings_77v52")
 
+[node name="Area3D" type="Area3D" parent="Villain"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Villain/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.4745)
+shape = SubResource("CapsuleShape3D_77v52")
+
 [node name="chest_gold2" parent="." instance=ExtResource("9_i6nld")]
 transform = Transform3D(-0.627691, 0, -0.778462, 0, 1, 0, 0.778462, 0, -0.627691, -5.17142, 0.100002, -33.4063)
 
@@ -760,7 +773,7 @@ transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -8.11019, 0.100001, -31
 transform = Transform3D(1.45463, 0, -0.666379, 0, 1.6, 0, 0.666379, 0, 1.45463, -2.89455, 0.100001, -28.8359)
 
 [node name="coin_stack_large_gltf4" parent="." instance=ExtResource("10_lo1d8")]
-transform = Transform3D(1.6, 0, -0.00374198, 0, 1.6, 0, 0.00374198, 0, 1.6, -1.8043, 0.100001, -28.8359)
+transform = Transform3D(1.6, 0, -0.00374198, 0, 1.6, 0, 0.00374198, 0, 1.6, -1.8043, 0.100001, -30.4903)
 
 [node name="coin_stack_large_gltf3" parent="." instance=ExtResource("10_lo1d8")]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 3.32743, 0.100001, -33.9946)
@@ -953,11 +966,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_ijprh")
 }
 
+[connection signal="timeout" from="CharacterBody3D2/waithit" to="CharacterBody3D2" method="_on_waithit_timeout"]
 [connection signal="timeout" from="Villain/Node3D/introcam/intro1" to="Villain/Node3D" method="_on_intro_1_timeout"]
 [connection signal="timeout" from="Villain/Node3D/introcam/finishintro" to="Villain/Node3D" method="_on_finishintro_timeout"]
 [connection signal="timeout" from="Villain/Node3D/introcam2/intro2" to="Villain/Node3D" method="_on_intro_2_timeout"]
 [connection signal="timeout" from="Villain/Node3D/introcam3/intro3" to="Villain/Node3D" method="_on_intro_3_timeout"]
 [connection signal="timeout" from="Villain/Node3D/flip" to="Villain/Node3D" method="_on_flip_timeout"]
+[connection signal="area_shape_entered" from="Villain/Area3D" to="CharacterBody3D2" method="_on_area_3d_area_shape_entered"]
+[connection signal="area_shape_exited" from="Villain/Area3D" to="CharacterBody3D2" method="_on_area_3d_area_shape_exited"]
 [connection signal="timeout" from="losehptimer" to="Villain" method="_on_losehptimer_timeout"]
 
 [editable path="CharacterBody3D2/neck/Camera3D/Node3D"]

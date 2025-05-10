@@ -5,6 +5,7 @@ var stop_distance = 6
 var speed = 2
 var just_once = true
 var attack = true
+var go_finish = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,3 +34,11 @@ func _process(delta: float) -> void:
 				$"../losehptimer".start()
 				just_once = false
 			#$"../Hero".hit_back = true
+	go_finish = true
+	if go_finish == true:
+		if position.z >= -26:
+			$AnimationPlayer.play("Running")
+			position.z -= 4*delta
+			position.x -= 0.2*delta
+		else:
+			$AnimationPlayer.play("Idle")

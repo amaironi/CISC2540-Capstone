@@ -6,6 +6,8 @@ extends CharacterBody3D
 const SPEED = 5
 const JUMP_VELOCITY = 3
 var can_input = true
+var can_hit = true
+var damageable = false
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -31,6 +33,14 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	if can_hit == true:
+		if Input.is_action_just_pressed("swing"):
+			can_hit = false
+			$waithit.start()
+			$neck/Camera3D/Node3D/AnimationPlayer.play("Swing")
+			if damageable == true:
+				$"../Villain".hp -= 2
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -43,3 +53,15 @@ func _input(event):
 		neck.rotate_y(-event.relative.x*0.004)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-30), deg_to_rad(60))
 	
+
+
+func _on_waithit_timeout() -> void:
+	can_hit = true # Replace with function body.
+
+
+func _on_area_3d_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	damageable = true # Replace with function body.
+
+
+func _on_area_3d_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	damageable = false # Replace with function body.
