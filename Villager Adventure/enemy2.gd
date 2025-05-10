@@ -28,8 +28,11 @@ func _process(delta: float) -> void:
 		frozen = false
 		just_once = false
 	
-	$Label3D2.text = "HP: " + str(hp)
-	
+	if hp > 0:
+		$Label3D2.text = "HP: " + str(hp)
+	if hp <= 0:
+		$Label3D2.text = "DEAD (congrats, please let yourself die)"
+
 	if frozen == false:
 		var to_player = target_position - position
 		var distance = to_player.length()
@@ -51,6 +54,7 @@ func _process(delta: float) -> void:
 		$"../CharacterBody3D".can_input = false
 		$"../questfailed".visible = true
 		$"../questfailed/restart".start()
+		$"../CharacterBody3D".SPEED = 0
 		frozen = true
 	
 	if Input.is_action_just_pressed("swing") and can_be_hit == true:

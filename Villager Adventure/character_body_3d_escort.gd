@@ -14,13 +14,7 @@ var can_hit = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
-	$"../fadein/AnimationPlayer2".play("fadein")
-	$"../Dialogue1/Dia1fade".play("Fadein")
-	SPEED = 0
-	
-	if $"../Background_ambiance".playing == false:
-		$"../Background_ambiance".play()
-	
+	pass
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -44,22 +38,6 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
-	if can_hit == true:
-		if Input.is_action_just_pressed("swing"):
-			can_hit = false
-			$"../Hero/wait_to_hit".start()
-			$neck/Camera3D/Node3D/AnimationPlayer.play("Swing")
-
-
-	
-	if just_once == true and Input.is_action_just_pressed("AdvanceDialogue"):
-		just_once = false
-		$"../Dialogue1/Dia1fade".play("Fadeout")
-		SPEED = 1.2
-		$"../Dialogue1/hostiles".play()
-		$"../Dialogue1/herofreeze".start()
-	#$Hit.play("Hit")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -72,14 +50,3 @@ func _input(event):
 		neck.rotate_y(-event.relative.x*0.004)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-30), deg_to_rad(60))
 	
-
-
-func _on_herofreeze_timeout() -> void:
-	$"../Hero/AudioStreamPlayer3D".play()
-	$"../Hero/AnimationPlayer".play("Running")
-	$"../Hero".frozen = false
-	
-
-
-func _on_wait_to_hit_timeout() -> void:
-	can_hit = true # Replace with function body.

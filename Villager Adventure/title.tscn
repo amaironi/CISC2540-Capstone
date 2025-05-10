@@ -214,6 +214,7 @@ metadata/SimpleGrassTextured = "2.0.5"
 [node name="Background_ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_5n3y1")
 volume_db = -10.0
+autoplay = true
 
 [node name="House" type="Node3D" parent="."]
 

@@ -222,6 +222,7 @@ func _on_accept_timeout() -> void:
 	$accept/accept.play()
 	$Leave.play("leave")
 	$AnimationPlayer.play("Running")
+	$"../ExitAreaShape/StaticBody3D".queue_free()
 	
 
 

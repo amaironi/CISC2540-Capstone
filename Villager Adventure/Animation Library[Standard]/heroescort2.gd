@@ -14,6 +14,8 @@ var speed = 1
 var just_once_3 = true
 var go_finish = false
 var just_once_4 = true
+var just_once_5 = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("Idle")
@@ -85,7 +87,9 @@ func _process(delta: float) -> void:
 		var to_finish = target_position - position
 		var distance = to_finish.length()
 		look_at(Vector3(finish.position.x,0.6,finish.position.z),Vector3.UP,true)
-
+		if just_once_5 == true:
+			just_once_5 = false
+			$"../Area3D/StaticBody3D".queue_free()
 
 		if distance > stop_distance:
 			$AnimationPlayer.play("Running")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://bkor8hjfohqcm"]
+[gd_scene load_steps=99 format=4 uid="uid://bkor8hjfohqcm"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://dm078qdi2rgu4" path="res://character_body_3d.gd" id="1_ig7tw"]
@@ -762,6 +762,9 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xuqvo"]
 size = Vector3(3.22391, 1, 0.133789)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsp4k"]
+size = Vector3(5.72986, 1, 0.564453)
 
 [sub_resource type="Animation" id="Animation_b1qrp"]
 length = 0.001
@@ -3098,6 +3101,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.303357, -11.9511)
 [node name="Exit" type="CollisionShape3D" parent="ExitAreaShape"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121597, 0.408487, -0.433105)
 shape = SubResource("BoxShape3D_xuqvo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ExitAreaShape"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitAreaShape/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603088, 0, -0.0154419)
+shape = SubResource("BoxShape3D_qsp4k")
 
 [node name="fadeout" type="ColorRect" parent="."]
 anchors_preset = -1

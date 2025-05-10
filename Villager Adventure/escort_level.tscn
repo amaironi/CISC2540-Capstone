@@ -88,6 +88,21 @@ buffer = PackedFloat32Array(-0.5, 0, 0.000107245, -2.29966, 0, 0.5, 0, 2.23517e-
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_505jc"]
 
+[sub_resource type="Animation" id="Animation_exsel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_uy1db"]
 resource_name = "dead"
 length = 1.5
@@ -102,21 +117,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(1.51844, 0, 2.0944)]
-}
-
-[sub_resource type="Animation" id="Animation_exsel"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oemhk"]
@@ -176,6 +176,21 @@ sky = SubResource("Sky_ig7tw")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Animation" id="Animation_vphws"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_oemhk"]
 resource_name = "fadein"
 length = 1.5
@@ -190,21 +205,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vphws"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_olwnj"]
@@ -504,6 +504,9 @@ current = true
 
 [node name="Node3D" parent="CharacterBody3D/neck/Camera3D" instance=ExtResource("7_t5rgv")]
 transform = Transform3D(0.770213, -0.637787, 0, 0.637787, 0.770213, 0, 0, 0, 1, 0.303735, -0.348361, -0.712866)
+
+[node name="MeshInstance3D" parent="CharacterBody3D/neck/Camera3D/Node3D" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
 
 [node name="dead" type="AnimationPlayer" parent="CharacterBody3D/neck/Camera3D"]
 libraries = {
@@ -1543,6 +1546,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.7595)
 shape = SubResource("CapsuleShape3D_0347m")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

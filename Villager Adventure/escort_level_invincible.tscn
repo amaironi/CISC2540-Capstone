@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://dwmmu5xay6dsk"]
+[gd_scene load_steps=71 format=4 uid="uid://dwmmu5xay6dsk"]
 
 [ext_resource type="Texture2D" uid="uid://rb2yhoxttlqm" path="res://R.jpeg" id="1_an00k"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_3wss1"]
@@ -177,6 +177,9 @@ sky = SubResource("Sky_fguj7")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g6p3l"]
+size = Vector3(0.391602, 1, 52.475)
+
 [sub_resource type="Animation" id="Animation_3baw1"]
 length = 0.001
 
@@ -304,6 +307,33 @@ height = 164.113
 font_size = 25
 font_color = Color(0.619608, 0.117647, 0.215686, 1)
 
+[sub_resource type="Animation" id="Animation_24ymh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["INVINCIBILITY: FALSE"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.619608, 0.117647, 0.215686, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_3wss1"]
 resource_name = "invicible"
 length = 3.0
@@ -330,33 +360,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.619608, 0.117647, 0.215686, 1), Color(0.619608, 1, 0.215686, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_24ymh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["INVINCIBILITY: FALSE"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:label_settings:font_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.619608, 0.117647, 0.215686, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fguj7"]
@@ -479,7 +482,22 @@ radius = 57.6573
 height = 179.114
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ehhi"]
-size = Vector3(3.13806, 1, 1.07227)
+size = Vector3(3.13806, 1, 0.488283)
+
+[sub_resource type="Animation" id="Animation_g6p3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_fguj7"]
 resource_name = "fadeout"
@@ -497,26 +515,14 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_g6p3l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5mqa"]
 _data = {
 &"RESET": SubResource("Animation_g6p3l"),
 &"fadeout": SubResource("Animation_fguj7")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fguj7"]
+size = Vector3(7.04584, 1, 0.59082)
 
 [node name="Node3D" type="Node3D"]
 
@@ -1450,6 +1456,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00181, 0.0307388, -6.1956)
 [node name="Rock_Medium_5" parent="mountainbg/Rock_Medium_2/Rock_Medium_6" instance=ExtResource("18_yaxht")]
 transform = Transform3D(-0.61971, 0, 0.78483, 0, 1, 0, -0.78483, 0, -0.61971, -2.60865, 0.0307388, -5.99866)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="mountainbg"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mountainbg/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01018, 0.779856, 0.00302124)
+shape = SubResource("BoxShape3D_g6p3l")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="mountainbg"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mountainbg/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5589, 0.779856, 0.00302124)
+shape = SubResource("BoxShape3D_g6p3l")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="mountainbg"]
+transform = Transform3D(-0.0342541, 0, -0.999413, 0, 1, 0, 0.999413, 0, -0.0342541, 0, 0, 2.12176)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mountainbg/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5589, 0.779856, 0.00302124)
+shape = SubResource("BoxShape3D_g6p3l")
+
 [node name="fadein" type="ColorRect" parent="."]
 anchors_preset = -1
 anchor_right = 1.37847
@@ -1806,7 +1831,7 @@ transform = Transform3D(0.98685, 0, 0.161638, 0, 1, 0, -0.161638, 0, 0.98685, 0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.420397, 0, -22.7666)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0744019, 0.612538, -0.0770969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0744019, 0.612538, -0.369091)
 shape = SubResource("BoxShape3D_2ehhi")
 
 [node name="ColorRect" type="ColorRect" parent="Area3D"]
@@ -1831,6 +1856,12 @@ libraries = {
 [node name="Timer" type="Timer" parent="Area3D"]
 wait_time = 1.5
 one_shot = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080658, 0.329736, 0.0918922)
+shape = SubResource("BoxShape3D_fguj7")
 
 [connection signal="timeout" from="Hero/wait_to_hit" to="CharacterBody3D" method="_on_wait_to_hit_timeout"]
 [connection signal="timeout" from="Hero/wait_to_hit" to="enemy" method="_on_wait_to_hit_timeout"]
