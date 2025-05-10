@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://c37avingvjjwb"]
 
-[ext_resource type="Script" path="res://Lab4 import/characterlab4.gd" id="1_ra2q6"]
+[ext_resource type="Script" uid="uid://rse6oguy6p4n" path="res://Lab4 import/characterlab4.gd" id="1_ra2q6"]
 [ext_resource type="PackedScene" uid="uid://dkityrj2ltoeo" path="res://Lab4 import/sword.tscn" id="2_ew2x3"]
 [ext_resource type="Script" uid="uid://ch2l3gql21073" path="res://Lab4 import/enemy.gd" id="3_jnyfl"]
 

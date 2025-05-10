@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uv0wfxdiolcg"
-path.s3tc="res://.godot/imported/T_WoodTrim_BaseColor.png-f527d10a4db8b3a3b095bd7e4f3b8115.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_WoodTrim_BaseColor.png-87e24025e22b63043027c4f8471df5c5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Medieval Village MegaKit[Standard]/textures/T_WoodTrim_BaseColor.png"
-dest_files=["res://.godot/imported/T_WoodTrim_BaseColor.png-f527d10a4db8b3a3b095bd7e4f3b8115.s3tc.ctex"]
+source_file="res://Medieval Village MegaKit[Standard]/Textures/T_WoodTrim_BaseColor.png"
+dest_files=["res://.godot/imported/T_WoodTrim_BaseColor.png-87e24025e22b63043027c4f8471df5c5.s3tc.ctex"]
 
 [params]
 

@@ -573,6 +573,9 @@ current = true
 [node name="Node3D" parent="CharacterBody3D/neck/Camera3D" instance=ExtResource("6_j5mqa")]
 transform = Transform3D(0.770213, -0.637787, 0, 0.637787, 0.770213, 0, 0, 0, 1, 0.303735, -0.348361, -0.712866)
 
+[node name="MeshInstance3D" parent="CharacterBody3D/neck/Camera3D/Node3D" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
+
 [node name="dead" type="AnimationPlayer" parent="CharacterBody3D/neck/Camera3D"]
 libraries = {
 &"": SubResource("AnimationLibrary_oemhk")
