@@ -6,6 +6,8 @@ var speed = 2
 var just_once = true
 var attack = true
 var go_finish = false
+var look_at_player =  false
+var just_once_finish = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,7 +36,7 @@ func _process(delta: float) -> void:
 				$"../losehptimer".start()
 				just_once = false
 			#$"../Hero".hit_back = true
-	go_finish = true
+
 	if go_finish == true:
 		if position.z >= -26:
 			$AnimationPlayer.play("Running")
@@ -42,3 +44,13 @@ func _process(delta: float) -> void:
 			position.x -= 0.2*delta
 		else:
 			$AnimationPlayer.play("Idle")
+		
+		if look_at_player == true:
+			var player = $"../CharacterBody3D2"
+			look_at(Vector3(player.position.x,2.6,player.position.z),Vector3.UP,true)
+			if just_once_finish == true:
+				$ragequit.play()
+				just_once_finish = false
+			if $ragequit.playing == false:
+				get_tree().change_scene_to_file("res://void.tscn")
+			

@@ -8,6 +8,8 @@ const JUMP_VELOCITY = 3
 var can_input = true
 var can_hit = true
 var damageable = false
+var has_chocolate = false
+var in_dialogue = false
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -42,6 +44,17 @@ func _physics_process(delta):
 			if damageable == true:
 				$"../Villain".hp -= 2
 
+	if $"../Hero".go_finish == true and Input.is_action_just_pressed("Pickup"):
+		has_chocolate = true
+		$"../table_long_gltf/Node3D".visible = false
+		$"../table_long_gltf/Label".visible = false
+	
+	if has_chocolate == true and in_dialogue == true:
+		if Input.is_action_just_pressed("AdvanceDialogue"):
+			$"../Dialogue1/Dia1fade".play("Fadeout")
+			$"../Dialogue1/rewardfinal".play()
+			$"../Hero".look_at_player = true
+		
 func _input(event):
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -65,3 +78,14 @@ func _on_area_3d_area_shape_entered(area_rid: RID, area: Area3D, area_shape_inde
 
 func _on_area_3d_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
 	damageable = false # Replace with function body.
+
+
+
+func _on_reward_body_entered(body: Node3D) -> void:
+	if has_chocolate == true:
+		$"../Dialogue1/Dia1fade".play("Fadein")
+		in_dialogue = true
+
+
+func _on_chocolatearea_body_entered(body: Node3D) -> void:
+	$"../table_long_gltf/Label".visible = true # Replace with function body.

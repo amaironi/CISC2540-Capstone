@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 		$"../Hero".attack = false
 		$"../questcomplete".visible = true
 		if just_once_2 == true:
+			$"../Hero".go_finish = true
 			$"../questcomplete/AnimationPlayer".play("fade")
 			$"../QUESTS/CheckBox".button_pressed = true
 			$"../QUESTS/Node2D/SparklerQuest".play("Sparkle")
