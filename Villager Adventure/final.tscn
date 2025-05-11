@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://d4g8gkqsi0tvw"]
+[gd_scene load_steps=63 format=3 uid="uid://d4g8gkqsi0tvw"]
 
 [ext_resource type="Texture2D" uid="uid://lf6o5s8ko3bp" path="res://darkrocks.jpeg" id="1_fp1em"]
 [ext_resource type="ArrayMesh" uid="uid://b4chvhgbsiebr" path="res://Medieval Village MegaKit[Standard]/OBJ/Wall_UnevenBrick_Door_Round.obj" id="2_7ijlv"]
@@ -17,9 +17,11 @@
 [ext_resource type="AudioStream" uid="uid://xfqot53560km" path="res://audio/bowsermusic.mp3" id="14_572a1"]
 [ext_resource type="PackedScene" uid="uid://bjlqfpc21yxte" path="res://Animation Library[Standard]/Hero.glb" id="15_m4l06"]
 [ext_resource type="Script" uid="uid://dd1jgwu4v41gt" path="res://Animation Library[Standard]/heroFINAL.gd" id="17_5m5f7"]
+[ext_resource type="AudioStream" uid="uid://bf0nkbhasshp1" path="res://audio/ragequit.mp3" id="18_0n1jq"]
 [ext_resource type="PackedScene" uid="uid://bwg4purnlwp7w" path="res://addons/kaykit_dungeon_remastered/Assets/gltf/table_long.gltf.glb" id="18_ijprh"]
-[ext_resource type="AudioStream" uid="uid://d3n1tkw44qto" path="res://audio/letsgo.mp3" id="18_tc1ei"]
 [ext_resource type="Texture2D" uid="uid://n5it81d1uqip" path="res://chocolate-bar-seamless-texture-pattern-background-free-vector.jpg" id="19_tc1ei"]
+[ext_resource type="AudioStream" uid="uid://c10layy5ladgq" path="res://audio/triumphant.mp3" id="19_urtl8"]
+[ext_resource type="AudioStream" uid="uid://dxqmi33sxdjq1" path="res://audio/gratitude.mp3" id="21_urtl8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_edh6e"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -1063,7 +1065,14 @@ bones/1588/rotation = Quaternion(0.288175, 0.063594, 0.0194094, 0.955267)
 shape = SubResource("CapsuleShape3D_ijprh")
 
 [node name="ragequit" type="AudioStreamPlayer3D" parent="Hero"]
-stream = ExtResource("18_tc1ei")
+stream = ExtResource("18_0n1jq")
+volume_db = -1.0
+pitch_scale = 0.9
+
+[node name="triumphant" type="AudioStreamPlayer3D" parent="Hero"]
+stream = ExtResource("19_urtl8")
+volume_db = 1.0
+pitch_scale = 0.9
 
 [node name="losehptimer" type="Timer" parent="."]
 wait_time = 1.5
@@ -1166,6 +1175,9 @@ libraries = {
 }
 
 [node name="rewardfinal" type="AudioStreamPlayer" parent="Dialogue1"]
+stream = ExtResource("21_urtl8")
+volume_db = -1.0
+pitch_scale = 1.1
 
 [connection signal="timeout" from="CharacterBody3D2/waithit" to="CharacterBody3D2" method="_on_waithit_timeout"]
 [connection signal="timeout" from="Villain/Node3D/introcam/intro1" to="Villain/Node3D" method="_on_intro_1_timeout"]

@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 	if hp <= 0:
 		visible = false
 		$Bosshp.text = "EVILIUS, THE STEALER OF CHOCOLATE: DEFEATED"
+		$"../AudioStreamPlayer".stop()
 		$"../Hero".attack = false
 		$"../questcomplete".visible = true
 		if just_once_2 == true:

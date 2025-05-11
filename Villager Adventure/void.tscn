@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://d1sehex2dvm1e"]
+[gd_scene load_steps=3 format=3 uid="uid://d1sehex2dvm1e"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Script" uid="uid://cb6wyiii6rmnp" path="res://void.gd" id="1_u8be3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2kk1r"]
+font_size = 40
+
+[node name="Node3D" type="Node2D"]
+script = ExtResource("1_u8be3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="Timer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -477.5
+offset_top = -27.5
+offset_right = 477.5
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "And thus, you will never be loaded in ever again..."
+label_settings = SubResource("LabelSettings_2kk1r")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

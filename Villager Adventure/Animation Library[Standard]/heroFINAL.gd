@@ -8,6 +8,7 @@ var attack = true
 var go_finish = false
 var look_at_player =  false
 var just_once_finish = true
+var just_once_2 = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +39,9 @@ func _process(delta: float) -> void:
 			#$"../Hero".hit_back = true
 
 	if go_finish == true:
+		if just_once_2 == true:
+			just_once_2 = false
+			
 		if position.z >= -26:
 			$AnimationPlayer.play("Running")
 			position.z -= 4*delta

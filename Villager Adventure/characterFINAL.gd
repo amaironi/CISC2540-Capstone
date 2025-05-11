@@ -10,7 +10,8 @@ var can_hit = true
 var damageable = false
 var has_chocolate = false
 var in_dialogue = false
-
+var wait_finish = false
+var just_once_3 = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
@@ -53,7 +54,11 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("AdvanceDialogue"):
 			$"../Dialogue1/Dia1fade".play("Fadeout")
 			$"../Dialogue1/rewardfinal".play()
-			$"../Hero".look_at_player = true
+	
+	if $"../Dialogue1/rewardfinal".playing == true:
+		wait_finish = true
+	elif $"../Dialogue1/rewardfinal".playing == false and wait_finish == true:
+		$"../Hero".look_at_player = true
 		
 func _input(event):
 	if event is InputEventMouseButton:
@@ -82,9 +87,10 @@ func _on_area_3d_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index
 
 
 func _on_reward_body_entered(body: Node3D) -> void:
-	if has_chocolate == true:
+	if has_chocolate == true and just_once_3 == true:
 		$"../Dialogue1/Dia1fade".play("Fadein")
 		in_dialogue = true
+		just_once_3 = false
 
 
 func _on_chocolatearea_body_entered(body: Node3D) -> void:
